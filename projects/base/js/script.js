@@ -99,33 +99,9 @@ var chart = c3.generate({
 
 // Doc ready
 $(document).ready(function() {
-    // Fired every time a tab is clicked
-    $('#content ul li a').click(function() {
-        // Highlight clicked tab and unhighlight other tabs
-        $(this).parent().addClass('active');
-        $(this).parent().siblings().removeClass('active');
-        
-        // The type of chart
-        // I.E. bar or area
-        chart_type = $(this).text().replace(' chart', '').toLowerCase();
-        
-        // Change the type of chart
-        chart.transform(chart_type);
-    });
-
     chartResize();
-// Close doc ready
 });
 
 $(window).resize(function() {
     chartResize();
-})
-
-// This is loaded if inside iframe
-// Used to test a chart being iFramed into story
-if ( window.self !== window.top ) {
-    $('#content h3').hide();
-    $('#content p').hide();
-    $('#content ul').hide();
-    $('#content br').hide();
-}
+});
