@@ -11,17 +11,17 @@ If you are iFraming the chart on a page, the iFrame.html file within the base fo
 The iFrame you should use looks like:
 
 ```html
-<div id="iframe-responsive-container" style="height: 320px" data-600-height="220px">
+<div id="iframe-responsive-container" data-height="320px" data-600-height="220px">
 	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
 </div>
 ```
 
-The height style of "iframe-responsive-container" is the default height of the iFramed chart. The "data-600-height" attribute sets the height of the chart to 220px at screen sizes that are 600px wide or lower.
+The date-height attribute of "iframe-responsive-container" is the default height of the iFramed chart. The "data-600-height" attribute sets the height of the chart to 220px at screen sizes that are 600px wide or lower.
 
 You can add as many "breakpoints" as you want. For instance, if you want the height of the chart to be 400px tall at screen sizes of 700px, you're code would look like so:
 
 ```html
-<div id="iframe-responsive-container" style="height: 320px" data-700-height="400px">
+<div id="iframe-responsive-container" data-height="320px" data-700-height="250px">
 	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
 </div>
 ```
@@ -29,7 +29,7 @@ You can add as many "breakpoints" as you want. For instance, if you want the hei
 You can also use both:
 
 ```html
-<div id="iframe-responsive-container" style="height: 320px" data-700-height="400px" data-600-height="220px">
+<div id="iframe-responsive-container" data-height="320px" data-700-height="250px" data-600-height="220px">
 	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
 </div>
 ```
