@@ -1,3 +1,6 @@
+// Set height of chart
+var chart_height = 320;
+
 // The label for these values
 // Will appear under x axis dashes
 var json_label = 'year';
@@ -25,14 +28,13 @@ var tooltip_wording  = 'items acquired';
 var legend_show = false;
 
 // Resizes chart
-function chartResize() {
-    if ($(window).width() < 601) {
+function iFrameChartResize() {
+    // Autmatically sets the size of the chart
+    // To the size of the iFrame
+    if ( window.self !== window.top ) {
+        // Set size of iFrame if on mobile
         chart.resize({
-            height: 200
-        });
-    } else {
-        chart.resize({
-            height: 320
+            height: $(window.self).height() - 5
         });
     }
 };
@@ -99,9 +101,9 @@ var chart = c3.generate({
 
 // Doc ready
 $(document).ready(function() {
-    chartResize();
+    iFrameChartResize()
 });
 
 $(window).resize(function() {
-    chartResize();
+    iFrameChartResize()
 });

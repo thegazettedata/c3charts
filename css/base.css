@@ -1,7 +1,9 @@
 #content {
-	width: 98%;
-	margin-left: 1%;
-	margin-right: 1%;
+	width: 100%;
+}
+
+#chart {
+	max-height: none !important;
 }
 
 /* Entire chart */

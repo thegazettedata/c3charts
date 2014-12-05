@@ -1,3 +1,6 @@
+// Set height of chart
+var chart_height = 320;
+
 // The label for these values
 // Will appear under x axis dashes
 var json_label = 'year';
@@ -32,7 +35,7 @@ function chartResize() {
         });
     } else {
         chart.resize({
-            height: 320
+            height: chart_height
         });
     }
 };
