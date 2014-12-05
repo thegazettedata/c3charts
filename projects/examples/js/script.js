@@ -7,6 +7,7 @@ var json_value = 'units';
 // Type of chart; i.e. area, bar, etc.
 // Types available: http://c3js.org/examples.html
 var chart_type = 'line';
+
 // Color of lines, bars, etc.
 var chart_color = '#a0c6e8';
 
@@ -17,9 +18,25 @@ var labels_show = false;
 // Text to go before value in tooltip title
 // Can be blank
 var tooltip_title = 'Year: ';
+// Wording that will follow the value in the tooltip
+var tooltip_wording  = 'items acquired';
 
 // Whether or not to show the legend
 var legend_show = false;
+
+// Resizes chart
+function chartResize() {
+    if ($(window).width() < 601) {
+        chart.resize({
+            height: 200
+        });
+    } else {
+        chart.resize({
+            height: 320
+        });
+    }
+};
+
 
 // Initiate the chart
 var chart = c3.generate({
@@ -50,15 +67,25 @@ var chart = c3.generate({
         }
     },
     tooltip: {
-        format: {
-            title: function (value) {
-                return tooltip_title + value;
-            },
-            value: function (value, ratio, id) {
-                // var format = d3.format('$');
-                // return format(value);
-                return value
-            }
+        contents: function (value, defaultTitleFormat, defaultValueFormat, color) {
+            // Capture title
+            // var format = d3.format('$');
+            // var title = format(value[0].x);
+            var title = value[0].x;
+
+            var value = value[0]['value'];
+            var tooltip = '<table class="c3-tooltip">';
+            tooltip += '<tbody><tr>';
+            tooltip += '<th colspan="2">' + title + '</th>';
+            tooltip += '</tr>';
+            tooltip += '<tr class="c3-tooltip-name-units">';
+            tooltip += '<td class="name">';
+            tooltip += '<span style="background-color:' + chart_color + '"></span>';
+            tooltip += value + ' ' + tooltip_wording;
+            tooltip += '</td>';
+            tooltip += '</tr></tbody></table>';
+
+            return tooltip;
         }
     },
     legend: {
@@ -70,4 +97,26 @@ var chart = c3.generate({
 // Close chart
 });
 
-d3.svg.axis().tickSize(1); 
+// Doc ready
+$(document).ready(function() {
+    // Fired every time a tab is clicked
+    $('#content ul li a').click(function() {
+        // Highlight clicked tab and unhighlight other tabs
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+        
+        // The type of chart
+        // I.E. bar or area
+        chart_type = $(this).text().replace(' chart', '').toLowerCase();
+        
+        // Change the type of chart
+        chart.transform(chart_type);
+    });
+
+    chartResize();
+// Close doc ready
+});
+
+$(window).resize(function() {
+    chartResize();
+})
