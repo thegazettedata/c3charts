@@ -1,4 +1,4 @@
-#C3.js charts
+#Responsive C3.js charts
 
 This is a repository of charts built for The Gazette and KCRG using [C3.js](http://c3js.org/). The CSS, JS and imgs folders are global folder that are used with every project.
 
