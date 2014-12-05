@@ -34,3 +34,13 @@ You can also use both:
 </div>
 ```
 
+Finally, because Saxo likes to strip out attributes, which are very important, please lazy load the embed like so:
+
+```html
+<div class="lazyload"><!--
+<div id="iframe-responsive-container" data-height="320px" data-700-height="250px" data-600-height="220px">
+	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
+</div>
+--></div>
+```
+
