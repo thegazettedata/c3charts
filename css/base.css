@@ -1,0 +1,37 @@
+#content {
+	width: 98%;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+.c3 svg {
+	font-family: 'Helvetica Neue', Helvetica, arial, sans-serif;
+	font-size: 13px;
+}
+
+.c3 line {
+	display: none;
+	stroke: #ccc;
+}
+
+.c3 path {
+	stroke: #999;
+}
+
+.c3-xgrid, .c3-ygrid {
+	display: block !important;
+	stroke-dasharray: 1 1;
+	stroke-opacity: 0.5;
+}
+
+.c3-xgrid-focus {
+	display: block !important;
+}
+
+.domain {
+	display: none;
+}
+
+#chart .c3-line-data1, #chart .c3-line-data2, #chart .c3-line-data3, #chart .c3-line-data4, #chart .c3-line-data5 {
+	stroke-width: 2px;
+}
