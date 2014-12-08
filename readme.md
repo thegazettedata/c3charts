@@ -34,7 +34,7 @@ You can also use both:
 </div>
 ```
 
-Finally, because our CMS strips out attributes, which are very important, we lazy load the embed like so:
+Finally, because our CMS strips out attributes, which are very important, we [lazy load](https://github.com/emn178/jquery-lazyload-any) the embed like so:
 
 ```html
 <div class="lazyload"><!--
