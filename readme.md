@@ -34,7 +34,7 @@ You can also use both:
 </div>
 ```
 
-Finally, because Saxo likes to strip out attributes, which are very important, please lazy load the embed like so:
+Finally, because our CMS strips out attributes, which are very important, we lazy load the embed like so:
 
 ```html
 <div class="lazyload"><!--
