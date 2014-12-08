@@ -6,6 +6,9 @@ Individual projects are housed in projects and have their own CSS, JS, etc. fold
 
 The base folder in the projects folder is meant to be copied and pasted whenever you create a new project. Just rename the folder, place it within the projects folder and hack away.
 
+The base-tabletop folder is the same as the base folder, only the chart here is running off of data that is in a [Google spreadsheet](https://docs.google.com/spreadsheets/d/1I1kFgNtDyHG2kX9BfetoKtYiG39ko7M9uBpm-c_UGlk/edit#gid=0). We are using [Tabletop](https://github.com/jsoma/tabletop) to grab the data.
+
+
 If you are iFraming the chart on a page, the iFrame.html file within the base folder includes CSS and JS to make the chart responsive.
 
 The iFrame you should use looks like:
