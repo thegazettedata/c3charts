@@ -36,8 +36,8 @@
 	display: none;
 }
 
-#chart .c3-line-data1, #chart .c3-line-data2, #chart .c3-line-data3, #chart .c3-line-data4, #chart .c3-line-data5 {
-	stroke-width: 2px;
+#chart .c3-line-units {
+	stroke-width: 1px;
 }
 
 /* Tooltip */
