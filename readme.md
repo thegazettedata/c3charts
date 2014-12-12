@@ -37,7 +37,7 @@ You can also use both:
 </div>
 ```
 
-Finally, because our CMS strips out attributes, which are very important, we [lazy load](https://github.com/emn178/jquery-lazyload-any) the embed like so:
+Because our CMS strips out attributes, which are very important, we [lazy load](https://github.com/emn178/jquery-lazyload-any) the embed like so:
 
 ```html
 <div class="lazyload"><!--
@@ -47,3 +47,18 @@ Finally, because our CMS strips out attributes, which are very important, we [la
 --></div>
 ```
 
+
+You can also add a header and about text like so: 
+
+
+```html
+<div id="chart-homicides-container" class="chart-container">
+	<h3>Homicides: 2004 - 2014</h3>
+	<div class="lazyload"><!--
+		<div class="iframe-responsive-container chart" data-height="250px" data-600-height="200px">
+		<iframe frameborder="0" src="index.html#chart-homicides" width="100%"></iframe>
+		</div>
+	--></div>
+	<p><strong>About:</strong> Shown are the number of victims as a result of homicide.  In 2006, police recorded five incidents with six victims, including a double homicide. This year, policed recorded six incidents with eight victims.</p>
+</div>
+```

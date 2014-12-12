@@ -13,81 +13,26 @@
     <meta http-equiv="cleartype" content="on">
     
     <script src="../../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../../js/lib/underscore-1.7.0.min.js"></script>
     <script src="../../js/lib/jquery-lazyload-any-0.1.8.js"></script>
+    <script src="http://gadev.cdr.dc.publicus.com/JS/article-lazyload.js"></script>
 
-    <style>
-    .iframe-responsive-container {
-        position: relative;
-        width: 100%;
-        padding-top: 320px;
-    }
-    .iframe-responsive-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-    }
+    <!-- Base, custom styles -->
+    <link rel="stylesheet" href="http://gadev.cdr.dc.publicus.com/css/article-embeds.css" />
+    <link rel="stylesheet" href="css/style.css" />
     </style>
-    </head>
+</head>
 <body>
-    <div class="lazyload"><!--
-    <div class="iframe-responsive-container" data-height="320px" data-600-height="220px">
-        <iframe frameborder="0" src="index.html" width="100%"></iframe>
+    <div id="chart-shotsfired-container" class="chart-container">
+        <h3>Shots fired incidents spike in summer months</h3>
+        <div class="lazyload"><!--
+        <div class="iframe-responsive-container chart" data-height="250px" data-600-height="200px">
+            <iframe frameborder="0" src="index.html#chart-shotsfired" width="100%"></iframe>
+        </div>
+        --></div>
+        <p><strong>About:</strong> Shown are the number of shots fired incidents for every month since 2008. Highlighted in red are the summer months from June to September. Typically, more incidents of shots fired are reported during these months. Rollover the bars for detailed information.</p>
     </div>
-    --></div>
 
-    <script>
-    function iframeResponsive() {
-        // Find our responsive iframes
-        $(document).find('.iframe-responsive-container').each(function() {
-            // Make sure height is auto
-            var current_iframe = $(this);
-            $(current_iframe).css('height', 'auto');
-
-            // Find the breakpoints defined within the iframe container
-            $.each(this.attributes, function(num, attribute){
-                var current_attribute = attribute.name;
-                var current_value = attribute.value;
-                // Set default height
-                if (current_attribute === 'data-height') {
-                    // The padding-top of the iframe container
-                    // Basically becomes the height of the container and iframe
-                    $(current_iframe).css('padding-top', current_value);
-                // Set height based on breakpoints
-                } else if (current_attribute.indexOf('data') > -1 ) {
-                    var breakpoint = parseInt(current_attribute.replace('data-', '').replace('-height', ''));
-                    if ($(window).width() < (breakpoint + 1)) {
-                        $(current_iframe).css('padding-top', current_value);
-                    }
-                }
-            });
-        });
-    // Close iframe responsive
-    }
-
-    // Doc ready
-    $(document).ready(function() {
-        iframeResponsive();
-
-        // Lazy load
-        function lazyLoad(content) {
-            $(content).fadeOut(0, function() {
-                $(content).fadeIn(1000);
-            });
-        }
-
-        // Kick off lazy load
-        $('.lazyload').lazyload({
-            threshold: 800,
-            load: lazyLoad
-        });
-    });
-
-    $(window).resize(function() {
-        iframeResponsive();
-    });
-
-    </script>
+    <script src="http://gadev.cdr.dc.publicus.com/js/article-embeds.js"></script>
 </body>
 </html>

@@ -12,24 +12,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="cleartype" content="on">
     
+    <link rel="stylesheet" href="http://thegazette.com/css/article-embeds.css" />
+
     <script src="../../js/lib/jquery-1.11.1.min.js"></script>
     <script src="../../js/lib/jquery-lazyload-any-0.1.8.js"></script>
-
-    <style>
-    .iframe-responsive-container {
-        position: relative;
-        width: 100%;
-        padding-top: 320px;
-    }
-    .iframe-responsive-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-    }
-    </style>
-    </head>
+</head>
 <body>
     <div class="lazyload"><!--
     <div class="iframe-responsive-container" data-height="320px" data-600-height="220px">
@@ -37,57 +24,6 @@
     </div>
     --></div>
 
-    <script>
-    function iframeResponsive() {
-        // Find our responsive iframes
-        $(document).find('.iframe-responsive-container').each(function() {
-            // Make sure height is auto
-            var current_iframe = $(this);
-            $(current_iframe).css('height', 'auto');
-
-            // Find the breakpoints defined within the iframe container
-            $.each(this.attributes, function(num, attribute){
-                var current_attribute = attribute.name;
-                var current_value = attribute.value;
-                // Set default height
-                if (current_attribute === 'data-height') {
-                    // The padding-top of the iframe container
-                    // Basically becomes the height of the container and iframe
-                    $(current_iframe).css('padding-top', current_value);
-                // Set height based on breakpoints
-                } else if (current_attribute.indexOf('data') > -1 ) {
-                    var breakpoint = parseInt(current_attribute.replace('data-', '').replace('-height', ''));
-                    if ($(window).width() < (breakpoint + 1)) {
-                        $(current_iframe).css('padding-top', current_value);
-                    }
-                }
-            });
-        });
-    // Close iframe responsive
-    }
-
-    // Doc ready
-    $(document).ready(function() {
-        iframeResponsive();
-
-        // Lazy load
-        function lazyLoad(content) {
-            $(content).fadeOut(0, function() {
-                $(content).fadeIn(1000);
-            });
-        }
-
-        // Kick off lazy load
-        $('.lazyload').lazyload({
-            threshold: 800,
-            load: lazyLoad
-        });
-    });
-
-    $(window).resize(function() {
-        iframeResponsive();
-    });
-
-    </script>
+    <script src="../../js/iframe.js"></script>
 </body>
 </html>

@@ -1,9 +1,39 @@
 // TABLETOP
 // Google Docs spreadsheet key
 var spreadsheet_key = '1a-g9ce9PMriDFCl3qfeJu-8lVT4vfwtEkB5SeQfuM78';
-var tabletop_sheets = [
-    ['Sheet2', 'chart-one', 'area'],
-    ['Sheet2', 'chart-two', 'line']
+
+// Options for our charts
+// 1. Google spreadsheet: Sheet name
+// 2. Div on page
+// 3. Type of chart
+// 4. Label (first column)
+// 5. Value(s) (second columns +)
+// 6. Color(s)
+// 7. Axis rotation (horizontal)
+// 9. Tooltip: Group all the years into the same tooltip
+// 8. Tooltip wording
+var chart_options = [
+    {
+        'google_ss_sheet': 'Sheet2',
+        'div': 'chart-homicides',
+        'chart_type': 'area',
+        'label': 'year',
+        'values': ['homicides'],
+        'colors': ['#e31a1c'],
+        'rotated': false,
+        'tooltip_grouped': true,
+        'tooltip_wording': 'victims'
+    },{
+        'google_ss_sheet': 'Sheet3',
+        'div': 'chart-shotsfired',
+        'chart_type': 'bar',
+        'label': 'year',
+        'values': ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+        'colors': ['#CCC','#CCC', '#CCC', '#CCC', '#CCC', '#e31a1c', '#e31a1c', '#e31a1c', '#e31a1c', '#CCC', '#CCC', '#CCC'],
+        'rotated': false,
+        'tooltip_grouped': false,
+        'tooltip_wording': 'shots fired incidents'
+    }
 ];
 
 // Where we'll put data we load from Tabletop
@@ -11,32 +41,20 @@ var tabletop_sheets = [
 var tabletop_data_global;
 var tabletop_data_current;
 var tabletop_data_export;
-
-// The label for these values
-// Will appear under x axis dashes
-var json_label = 'year';
-// The field in the JSON file that has the numbers we want to chart
-var json_value = 'homicides';
+var hash;
 
 // CHART OPTIONS
 // Set height of chart
 var chart_height = 320;
 
-// Color of lines, bars, etc.
-var chart_color = '#a0c6e8';
-
 // Whether or not to show the numbers
 // Above the bars, lines, etc.
 var labels_show = false;
 
-// Text to go before value in tooltip title
-// Can be blank
-var tooltip_title = 'Year: ';
-// Wording that will follow the value in the tooltip
-var tooltip_wording  = 'items acquired';
-
 // Whether or not to show the legend
 var legend_show = false;
+
+var chart;
 
 // Resizes chart
 function iFrameChartResize() {
@@ -51,26 +69,32 @@ function iFrameChartResize() {
 };
 
 // Initiate the chart
-function initChart(div, chart_type) {
-    console.log(div);
+function initChart(chart_options_current) {
+    // console.log(chart_options_current);
 
     chart = c3.generate({
-    	bindto: div,
+    	bindto: '#' + chart_options_current['div'],
         data: {
     		json: tabletop_data_current,
     		keys: {
-    				x: json_label,
-                    value: [json_value]
+    				x: chart_options_current['label'],
+                    value: chart_options_current['values']
     		},
-          	type: chart_type, 
-        	color: function (color, value) {
-                return chart_color;
-            },
+          	type: chart_options_current['chart_type'],
             labels: labels_show
         },
+        color: {
+            pattern: chart_options_current['colors']
+        },
         axis: {
+            rotated: chart_options_current['rotated'],
             x: {
                 padding: { right: 0.5 }
+            }
+        },
+        bar: {
+            width: {
+                ratio: 1
             }
         },
         grid: {
@@ -82,7 +106,20 @@ function initChart(div, chart_type) {
             }
         },
         tooltip: {
+            grouped: chart_options_current['tooltip_grouped'],
             contents: function (value, defaultTitleFormat, defaultValueFormat, color) {
+                // i.e. january, february, etc
+                var value_name = value[0]['name'];
+                var num_color;
+
+                // Match up values in tooltip value and values array
+                // So we can grab the right color 
+                _.each(chart_options_current['values'], function(value, num_value) {
+                    if (value_name === value) {
+                        num_color = num_value;
+                    }
+                }, this);
+
                 // Capture title
                 // var format = d3.format('$');
                 // var title = format(value[0].x);
@@ -91,12 +128,16 @@ function initChart(div, chart_type) {
                 var value = value[0]['value'];
                 var tooltip = '<table class="c3-tooltip">';
                 tooltip += '<tbody><tr>';
-                tooltip += '<th colspan="2">' + title + '</th>';
+                if (hash === 'chart-shotsfired') {
+                    tooltip += '<th colspan="2">' + capitaliseFirstLetter(value_name) + ' ' + title + '</th>';
+                } else {
+                    tooltip += '<th colspan="2">' + title + '</th>';
+                }
                 tooltip += '</tr>';
                 tooltip += '<tr class="c3-tooltip-name-units">';
                 tooltip += '<td class="name">';
-                tooltip += '<span style="background-color:' + chart_color + '"></span>';
-                tooltip += value + ' ' + tooltip_wording;
+                tooltip += '<span style="background-color:' + chart_options_current['colors'][num_color] + '"></span>';
+                tooltip += value + ' ' + chart_options_current['tooltip_wording'];
                 tooltip += '</td>';
                 tooltip += '</tr></tbody></table>';
 
@@ -112,7 +153,7 @@ function initChart(div, chart_type) {
     // Close chart
     });
     
-    $(div).siblings().hide()
+    $('#' + chart_options_current['div']).siblings().hide()
 
     iFrameChartResize();
 // Close chart function
@@ -143,20 +184,17 @@ function loadTabletopData(tabletop_data) {
 
     // Loop through sheets in Google Spreadhsheet
     var num_sheet_current = 0;
-    _.each(tabletop_sheets, function(sheet, num_sheet) {
-        
+    _.each(chart_options, function(sheet, num_sheet) {
         // Push JSON of Tabletopdata to global var
-        var hash = Backbone.history.fragment
-        if (sheet[1] === hash) {
+        hash = Backbone.history.fragment
+        if (sheet['div'] === hash) {
             num_sheet_current = num_sheet;
-            tabletop_data_current = tabletop_data[sheet[0]]['elements'], jsonReplacer;
+            tabletop_data_current = tabletop_data[sheet['google_ss_sheet']]['elements'], jsonReplacer;
+
+            // And load the chart
+            initChart(chart_options[num_sheet_current]);
         }
     }, this);
-
-    // After Tabletop is loaded, load the chart
-    var chart_div = '#' + tabletop_sheets[num_sheet_current][1];
-    var chart_type = tabletop_sheets[num_sheet_current][2];
-    initChart(chart_div, chart_type);
 }
 
 // Pull data from Google spreadsheet via Tabletop
