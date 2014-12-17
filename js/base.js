@@ -33,9 +33,32 @@ function removeSpecialCharacters(string) {
     return string.replace(/[^\w\s]/gi, '').replace(/ /g,'');
 }
 
-// This is loaded if inside iframe
-if ( window.self !== window.top ) {
-}
+// Resizes chart
+function windowResize() {
+    // Autmatically sets the size of the chart
+    // To the size of the iFrame
+    chart.resize({
+        width: $(window.self).width()
+    });
+
+    if ( window.self !== window.top ) {
+        // Height of other elements next to chart
+        var misc_heights = $(chart.element).siblings().outerHeight();
+        // New height of chart is height of window minus height of ther elements
+        var new_chart_height = $(window.self).height() - 10 - misc_heights;
+
+        // Set size of iFrame if on mobile
+        chart.resize({
+            height: new_chart_height
+        });
+    }
+};
+
+
+// iFrame resize
+$(window).resize(function() {
+    windowResize()
+});
 
 // Used to save console output
 // Used to pull data out of a Google spreadsheet

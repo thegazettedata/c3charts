@@ -42,18 +42,6 @@ var legend_show = false;
 // Don't need to edit
 var chart;
 
-// Resizes chart
-function iFrameChartResize() {
-    // Autmatically sets the size of the chart
-    // To the size of the iFrame
-    if ( window.self !== window.top ) {
-        // Set size of iFrame if on mobile
-        chart.resize({
-            height: $(window.self).height() - 5
-        });
-    }
-};
-
 // Initiate the chart
 function initChart() {
     chart = c3.generate({
@@ -168,9 +156,4 @@ function initializeTabletopObject(){
 // Doc ready
 $(document).ready(function() {
     initializeTabletopObject();
-});
-
-// iFrame resize
-$(window).resize(function() {
-    iFrameChartResize()
 });

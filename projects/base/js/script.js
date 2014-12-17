@@ -27,19 +27,6 @@ var tooltip_wording  = 'items acquired';
 // Whether or not to show the legend
 var legend_show = false;
 
-// Resizes chart
-function iFrameChartResize() {
-    // Autmatically sets the size of the chart
-    // To the size of the iFrame
-    if ( window.self !== window.top ) {
-        // Set size of iFrame if on mobile
-        chart.resize({
-            height: $(window.self).height() - 5
-        });
-    }
-};
-
-
 // Initiate the chart
 var chart = c3.generate({
 	bindto: '#chart',
@@ -101,9 +88,5 @@ var chart = c3.generate({
 
 // Doc ready
 $(document).ready(function() {
-    iFrameChartResize()
-});
-
-$(window).resize(function() {
-    iFrameChartResize()
+    windowResize()
 });

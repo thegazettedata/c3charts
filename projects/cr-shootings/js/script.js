@@ -56,18 +56,6 @@ var legend_show = false;
 
 var chart;
 
-// Resizes chart
-function iFrameChartResize() {
-    // Autmatically sets the size of the chart
-    // To the size of the iFrame
-    if ( window.self !== window.top ) {
-        // Set size of iFrame if on mobile
-        chart.resize({
-            height: $(window.self).height() - 5
-        });
-    }
-};
-
 // Initiate the chart
 function initChart(chart_options_current) {
     // console.log(chart_options_current);
@@ -81,7 +69,8 @@ function initChart(chart_options_current) {
                     value: chart_options_current['values']
     		},
           	type: chart_options_current['chart_type'],
-            labels: labels_show
+            labels: labels_show,
+            order: null
         },
         color: {
             pattern: chart_options_current['colors']
@@ -153,9 +142,13 @@ function initChart(chart_options_current) {
     // Close chart
     });
     
-    $('#' + chart_options_current['div']).siblings().hide()
+    $('#' + chart_options_current['div']).siblings().hide();
 
-    iFrameChartResize();
+    if (chart_options_current['div'] === 'chart-shotsfired') {
+        $('#toggle-view').show();
+    }
+
+    windowResize();
 // Close chart function
 };
 
@@ -211,9 +204,15 @@ function initializeTabletopObject(){
 $(document).ready(function() {
     // Fire up Backbone
     Backbone.history.start();
-});
 
-// iFrame resize
-$(window).resize(function() {
-    iFrameChartResize()
+    $('.toggle-view-option').click(function() {
+        $(this).addClass('selected');
+        $(this).siblings().removeClass('selected');
+
+        if ( $(this).attr('id') === 'toggle-view-option-left') {
+             chart.ungroup();
+        } else if ( $(this).attr('id') === 'toggle-view-option-right') {
+             chart.groups([chart_options[1]['values']]);
+        }
+    });
 });
