@@ -43,7 +43,7 @@ function windowResize() {
 
     if ( window.self !== window.top ) {
         // Height of other elements next to chart
-        var misc_heights = 0
+        var misc_heights = 0;
 
         // Loop through siblings of chart
         _.each($(chart.element).siblings(), function(value, num) {
