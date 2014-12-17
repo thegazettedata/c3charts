@@ -43,7 +43,16 @@ function windowResize() {
 
     if ( window.self !== window.top ) {
         // Height of other elements next to chart
-        var misc_heights = $(chart.element).siblings().outerHeight();
+        var misc_heights = 0
+
+        // Loop through siblings of chart
+        _.each($(chart.element).siblings(), function(value, num) {
+            // If element is shown, add it up
+            if ($(value).is(":visible") ) {
+                misc_heights += $(value).outerHeight();
+            }
+        });
+
         // New height of chart is height of window minus height of ther elements
         var new_chart_height = $(window.self).height() - 10 - misc_heights;
 

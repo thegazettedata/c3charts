@@ -22,7 +22,9 @@ var chart_options = [
         'colors': ['#e31a1c'],
         'rotated': false,
         'tooltip_grouped': true,
-        'tooltip_wording': 'victims'
+        'tooltip_wording': 'victims',
+        'padding_right': 0.5,
+        'legend_show': false
     },{
         'google_ss_sheet': 'Sheet3',
         'div': 'chart-shotsfired',
@@ -32,7 +34,21 @@ var chart_options = [
         'colors': ['#CCC','#CCC', '#CCC', '#CCC', '#CCC', '#e31a1c', '#e31a1c', '#e31a1c', '#e31a1c', '#CCC', '#CCC', '#CCC'],
         'rotated': false,
         'tooltip_grouped': false,
-        'tooltip_wording': 'shots fired incidents'
+        'tooltip_wording': 'shots fired incidents',
+        'padding_right': 0.5,
+        'legend_show': false
+    },{
+        'google_ss_sheet': 'Sheet4',
+        'div': 'chart-violentcrimes',
+        'chart_type': 'line',
+        'label': 'type',
+        'values': ['aggravatedassaults', 'robbery', 'sexualassault', 'assaultonofficer', 'murder'],
+        'colors': ['#1F78B4', '#BD6150', '#1FB4A0', '#e31a1c', '#2D414E'],
+        'rotated': false,
+        'tooltip_grouped': false,
+        'tooltip_wording': 'incidents',
+        'padding_right': 0.02,
+        'legend_show': true
     }
 ];
 
@@ -51,9 +67,6 @@ var chart_height = 320;
 // Above the bars, lines, etc.
 var labels_show = false;
 
-// Whether or not to show the legend
-var legend_show = false;
-
 var chart;
 
 // Initiate the chart
@@ -70,7 +83,14 @@ function initChart(chart_options_current) {
     		},
           	type: chart_options_current['chart_type'],
             labels: labels_show,
-            order: null
+            order: null,
+            names: {
+                assaultonofficer: 'Assault on officer',
+                murder: 'Murder',
+                robbery: 'Robbery',
+                aggravatedassaults: 'Aggravated assaults',
+                sexualassault: 'Sexual assault'
+            }
         },
         color: {
             pattern: chart_options_current['colors']
@@ -78,8 +98,11 @@ function initChart(chart_options_current) {
         axis: {
             rotated: chart_options_current['rotated'],
             x: {
-                padding: { right: 0.5 }
+                padding: { right: chart_options_current['padding_right'] }
             }
+        },
+        point: {
+            r: 3
         },
         bar: {
             width: {
@@ -134,7 +157,9 @@ function initChart(chart_options_current) {
             }
         },
         legend: {
-            show: legend_show
+            show: chart_options_current['legend_show'],
+            position: 'right'
+
         },
         oninit: function () {
         	spinner.stop();
@@ -205,6 +230,7 @@ $(document).ready(function() {
     // Fire up Backbone
     Backbone.history.start();
 
+    // Click event to toggle how the chart looks
     $('.toggle-view-option').click(function() {
         $(this).addClass('selected');
         $(this).siblings().removeClass('selected');

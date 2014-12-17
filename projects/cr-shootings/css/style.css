@@ -8,7 +8,12 @@
 	stroke-width: 0.5px !important;
 }
 
+.c3-line {
+	stroke-width: 2px;
+}
+
 #toggle-view {
+	display: none;
 	overflow: hidden;
 	width: 50%;
 	margin: 0 auto;

@@ -52,14 +52,24 @@ html, body {
 	stroke-width: 1px;
 }
 
+
+/* Legend */
+.c3-legend-item {
+	font-size: 14px;
+}
+
 /* Tooltip */
 .c3-tooltip th {
 	background-color: #999;
 	border-bottom: 1px solid #555;
 }
 
-@media(max-width:600px) {
+@media(max-width:650px) {
 	.c3 svg {
+		font-size: 12px;
+	}
+
+	.c3-legend-item {
 		font-size: 12px;
 	}
 }
