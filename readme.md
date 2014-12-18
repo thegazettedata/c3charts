@@ -15,7 +15,7 @@ The iFrame you should use looks like:
 
 ```html
 <div id="iframe-responsive-container" data-height="320px" data-600-height="220px">
-	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
+	<iframe id="iframe-responsive" src="index.html" scrolling=no frameborder="0" width="100%"></iframe>
 </div>
 ```
 
@@ -25,7 +25,7 @@ You can add as many "breakpoints" as you want. For instance, if you want the hei
 
 ```html
 <div id="iframe-responsive-container" data-height="320px" data-700-height="250px">
-	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
+	<iframe id="iframe-responsive" src="index.html" scrolling=no frameborder="0" width="100%"></iframe>
 </div>
 ```
 
@@ -33,7 +33,7 @@ You can also use both:
 
 ```html
 <div id="iframe-responsive-container" data-height="320px" data-700-height="250px" data-600-height="220px">
-	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
+	<iframe id="iframe-responsive" src="index.html" scrolling=no frameborder="0" width="100%"></iframe>
 </div>
 ```
 
@@ -42,7 +42,7 @@ Because our CMS strips out attributes, which are very important, we [lazy load](
 ```html
 <div class="lazyload"><!--
 <div id="iframe-responsive-container" data-height="320px" data-700-height="250px" data-600-height="220px">
-	<iframe id="iframe-responsive" frameborder="0" src="index.html" width="100%"></iframe>
+	<iframe id="iframe-responsive" src="index.html" scrolling=no frameborder="0" width="100%"></iframe>
 </div>
 --></div>
 ```
@@ -56,9 +56,11 @@ You can also add a header and about text like so:
 	<h3>Homicides: 2004 - 2014</h3>
 	<div class="lazyload"><!--
 		<div class="iframe-responsive-container chart" data-height="250px" data-600-height="200px">
-		<iframe frameborder="0" src="index.html#chart-homicides" width="100%"></iframe>
+		<iframe src="index.html#chart-homicides" scrolling=no frameborder="0" width="100%"></iframe>
 		</div>
 	--></div>
 	<p><strong>About:</strong> Shown are the number of victims as a result of homicide.  In 2006, police recorded five incidents with six victims, including a double homicide. This year, policed recorded six incidents with eight victims.</p>
 </div>
 ```
+
+NOTE: You must include "scrolling:no" in the iframe for this solution to work on iPhones. The code that makes these responsive iframes work is found here: [http://thegazette.com/js/article-embeds.js](http://thegazette.com/js/article-embeds.js). Find the "findResponsiveIframes()" for the code.

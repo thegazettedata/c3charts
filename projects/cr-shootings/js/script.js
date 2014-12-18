@@ -56,7 +56,7 @@ var chart_options = [
 // Don't need to edit
 var tabletop_data_global;
 var tabletop_data_current;
-var tabletop_data_export;
+var tabletop_data_export = {};
 var hash;
 
 // CHART OPTIONS
@@ -191,8 +191,9 @@ function loadTabletopData(tabletop_data) {
     tabletop_data_global = tabletop_data;
 
     // _.each(tabletop_data, function(element_data, num_data) {
-    //     // console.log(element_data);
+    //     console.log(element_data);
     //     var name = element_data['name'];
+    //     console.log(name);
     //     tabletop_data_export[name] = {'name': name}, {'column_names': ''}, {'elements': ''};
 
     //     tabletop_data_export[name]['column_names'] = element_data['column_names'];
@@ -217,12 +218,14 @@ function loadTabletopData(tabletop_data) {
 
 // Pull data from Google spreadsheet via Tabletop
 function initializeTabletopObject(){
-    Tabletop.init({
-        key: spreadsheet_key,
-        callback: loadTabletopData,
-        simpleSheet: false,
-        debug: false
-    });
+    loadTabletopData(tabletop_data);
+
+    // Tabletop.init({
+    //     key: spreadsheet_key,
+    //     callback: loadTabletopData,
+    //     simpleSheet: false,
+    //     debug: false
+    // });
 }
 
 // Doc ready
