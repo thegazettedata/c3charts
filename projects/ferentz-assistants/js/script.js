@@ -75,7 +75,8 @@ var chart = c3.generate({
 				x: json_label,
                 value: [json_value1, json_value2, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21]
 		},
-      	type: chart_type, 
+      	hide: [json_value1, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21],
+        type: chart_type, 
     	color: function (color, value) {
             return chart_color;
         },
@@ -119,6 +120,7 @@ var chart = c3.generate({
     },
     legend: {
         show: legend_show
+        // hide: [json_value1, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21]
     },
     oninit: function () {
     	spinner.stop();
