@@ -56,9 +56,6 @@ function windowResize() {
         // New height of chart is height of window minus height of ther elements
         var new_chart_height = $(window.self).height() - 10 - misc_heights;
 
-        console.log( $(window).innerHeight() );
-        console.log( $(document).height() );
-
         $('#content').height( $(window.self).height() );
 
         // Set size of iFrame if on mobile

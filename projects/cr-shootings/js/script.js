@@ -42,7 +42,7 @@ var chart_options = [
         'div': 'chart-violentcrimes',
         'chart_type': 'line',
         'label': 'type',
-        'values': ['aggravatedassaults', 'robbery', 'sexualassault', 'assaultonofficer', 'murder'],
+        'values': ['aggravatedassaults', 'sexualassault', 'robbery', 'assaultonofficer', 'murder'],
         'colors': ['#1F78B4', '#BD6150', '#1FB4A0', '#e31a1c', '#2D414E'],
         'rotated': false,
         'tooltip_grouped': false,
@@ -98,7 +98,9 @@ function initChart(chart_options_current) {
         axis: {
             rotated: chart_options_current['rotated'],
             x: {
-                padding: { right: chart_options_current['padding_right'] }
+                padding: {
+                    right: chart_options_current['padding_right']
+                }
             }
         },
         point: {
@@ -158,7 +160,13 @@ function initChart(chart_options_current) {
         },
         legend: {
             show: chart_options_current['legend_show'],
-            position: 'right'
+            position: 'top',
+            inset: {
+                anchor: 'bottom-right',
+                x: 20,
+                y: 10,
+                step: 5
+            }
 
         },
         oninit: function () {
