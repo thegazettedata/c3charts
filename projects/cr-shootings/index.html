@@ -32,21 +32,69 @@
     <link rel="stylesheet" href="../../css/base.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-
     <!-- Load Spin.js -->
     <script src="../../js/lib/spin-2.0.1.min.js"></script>
 </head>
 <body>
     <!-- Content-->
     <div id="content">
-        <div id="toggle-view">
+        <div id="toggle-view-shotsfired" class="toggle-view">
             <a id="toggle-view-option-left" class="toggle-view-option selected">Sort by month</a>
             <a id="toggle-view-option-right" class="toggle-view-option">Sort by year</a>
+        </div>
+        <div id="toggle-view-homicides" class="toggle-view">
+            <a id="toggle-view-option-left" class="toggle-view-option selected">Number of incidents</a>
+            <a id="toggle-view-option-right" class="toggle-view-option">Victims</a>
         </div>
         <div id="chart-homicides"></div>
         <div id="chart-shotsfired"></div>
         <div id="chart-violentcrimes"></div>
-    </div>
+        <div id="table-homicides" class="table-container left">
+            <table class="table table-striped">
+            <thead>
+            <tr><th class="Date-cell">Date</th><th class="Address-cell">Address</th><th class="Victim(s)-cell">Victim(s)</th><th class="Offender-cell">Offender</th></tr>
+            </thead>
+            <tbody>
+            <tr class="firstRow">
+            <td class="Date-cell">1/30/2014</td>
+            <td class="Address-cell">3515 Banar DR SW Unit B</td>
+            <td class="Victim(s)-cell">Ingrid Livingston and Linda Huber</td>
+            <td class="Offender-cell">Robert Livingstone</td>
+            </tr>
+            <tr>
+            <td class="Date-cell">2/4/2014</td>
+            <td class="Address-cell">1800 Blk B Ave NE</td>
+            <td class="Victim(s)-cell">Clifton Sparks</td>
+            <td class="Offender-cell">Robert Nash</td>
+            </tr>
+            <tr>
+            <td class="Date-cell">2/21/2014</td>
+            <td class="Address-cell">6124 Dean RD SW</td>
+            <td class="Victim(s)-cell">Luella Koopman</td>
+            <td class="Offender-cell">Dennis Koopman</td>
+            </tr>
+            <tr class="highlight">
+            <td class="Date-cell">4/2/2014</td>
+            <td class="Address-cell">1708 4th Ave SE</td>
+            <td class="Victim(s)-cell">Quintrell Perkins and Sierrah Simmons</td>
+            <td class="Offender-cell">Still under investigation</td>
+            </tr>
+            <tr>
+            <td class="Date-cell">4/4/2014</td>
+            <td class="Address-cell">228 Jacolyn DR #13</td>
+            <td class="Victim(s)-cell">Shanna Beyhl</td>
+            <td class="Offender-cell">Bobbie Little</td>
+            </tr>
+            <tr class="lastRow">
+            <td class="Date-cell">6/30/2014</td>
+            <td class="Address-cell">1808 Eastern DR SW</td>
+            <td class="Victim(s)-cell">Chantelle Crowley</td>
+            <td class="Offender-cell">Shawn Crowley</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+        </div>
     
     <!-- Spin.js -->
     <script>
@@ -65,7 +113,7 @@
         hwaccel: false, // Whether to use hardware acceleration
         className: 'spinner', // The CSS class to assign to the spinner
         zIndex: 2e9, // The z-index (defaults to 2000000000)
-        top: '150px', // Top position relative to parent
+        top: '15px', // Top position relative to parent
         left: '50%' // Left position relative to parent
     };
     var target = document.getElementById('content');
@@ -94,7 +142,7 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
         ga('create', 'UA-30416-68', 'auto');
         ga('require', 'displayfeatures');
-        ga('send', 'pageview');
+        // ga('send', 'pageview');
     </script>
 </body>
 </html>

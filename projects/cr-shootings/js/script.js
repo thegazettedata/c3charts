@@ -42,8 +42,8 @@ var chart_options = [
         'div': 'chart-violentcrimes',
         'chart_type': 'line',
         'label': 'type',
-        'values': ['aggravatedassaults', 'sexualassault', 'robbery', 'assaultonofficer', 'murder'],
-        'colors': ['#1F78B4', '#BD6150', '#1FB4A0', '#e31a1c', '#2D414E'],
+        'values': ['aggravatedassaults', 'sexualassault', 'robbery', 'assaultonofficer', 'shotsfired', 'murder'],
+        'colors': ['#1F78B4', '#BD6150', '#1FB4A0', '#8F32B4', '#2A4A4E', '#e31a1c'],
         'rotated': false,
         'tooltip_grouped': false,
         'tooltip_wording': 'incidents',
@@ -87,6 +87,7 @@ function initChart(chart_options_current) {
             names: {
                 assaultonofficer: 'Assault on officer',
                 murder: 'Murder',
+                shotsfired: 'Shots fired',
                 robbery: 'Robbery',
                 aggravatedassaults: 'Aggravated assaults',
                 sexualassault: 'Sexual assault'
@@ -178,7 +179,9 @@ function initChart(chart_options_current) {
     $('#' + chart_options_current['div']).siblings().hide();
 
     if (chart_options_current['div'] === 'chart-shotsfired') {
-        $('#toggle-view').show();
+        $('#toggle-view-shotsfired').show();
+    } else if (chart_options_current['div'] === 'chart-homicides') {
+        $('#toggle-view-homicides').show();
     }
 
     windowResize();
@@ -243,13 +246,34 @@ $(document).ready(function() {
 
     // Click event to toggle how the chart looks
     $('.toggle-view-option').click(function() {
+        ga('send', 'event', 'CR shootings', 'Toggle view');
+
         $(this).addClass('selected');
         $(this).siblings().removeClass('selected');
 
+    });
+
+    $('#toggle-view-shotsfired .toggle-view-option').click(function() {
         if ( $(this).attr('id') === 'toggle-view-option-left') {
              chart.ungroup();
         } else if ( $(this).attr('id') === 'toggle-view-option-right') {
              chart.groups([chart_options[1]['values']]);
         }
+    });
+
+    $('#toggle-view-homicides .toggle-view-option').click(function() {
+        if ( $(this).attr('id') === 'toggle-view-option-left') {
+             $('#chart-homicides').show();
+             $('#chart-homicides').siblings().hide();
+             $('#toggle-view-homicides').show();
+        } else if ( $(this).attr('id') === 'toggle-view-option-right') {
+             $('#table-homicides').show();
+             $('#table-homicides').siblings().hide();
+             $('#toggle-view-homicides').show();
+        }
+    });
+
+    $("body").mouseleave(function(){
+        ga('send', 'event', 'CR shootings', 'Chart touched');
     });
 });

@@ -12,14 +12,14 @@
 	stroke-width: 2px;
 }
 
-#toggle-view {
+.toggle-view {
 	display: none;
 	overflow: hidden;
-	width: 50%;
+	width: 40%;
 	margin: 0 auto;
 }
 
-#toggle-view .toggle-view-option {
+.toggle-view .toggle-view-option {
 	width: 46%;
 	padding: 1%;
 	text-align: center;
@@ -30,24 +30,28 @@
 	cursor: pointer;
 }
 
-#toggle-view .selected, #toggle-view .toggle-view-option:hover {
+.toggle-view .selected, .toggle-view .toggle-view-option:hover {
 	background-color: #1f78b4;
 	border-bottom: 3px solid #444;
 	color: #FFF;
 	text-decoration: none;
 }
 
-#toggle-view #toggle-view-option-left {
+.toggle-view #toggle-view-option-left {
 	float: left;
 }
 
-#toggle-view #toggle-view-option-right {
+.toggle-view #toggle-view-option-right {
 	float: right;
 }
 
 
 @media(max-width:650px) {
-	#toggle-view {
+	.toggle-view {
 		width: 90%;
+	}
+
+	#toggle-view-homicides, #table-homicides {
+		display: none !important;
 	}
 }
