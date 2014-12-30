@@ -1,3 +1,12 @@
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30416-68', 'auto');
+  ga('require', 'displayfeatures');
+  // ga('send', 'pageview');
+
 // Set height of chart
 var chart_height = 620;
 
@@ -37,7 +46,7 @@ var chart_color = '#a0c6e8';
 
 // Whether or not to show the numbers
 // Above the bars, lines, etc.
-var labels_show = true;
+var labels_show = false;
 
 
 // Wording that will follow the value in the tooltip
@@ -59,12 +68,6 @@ function iFrameChartResize() {
 };
 
 
-function commaSeparateNumber(val){
-    while (/(\d+)(\d{3})/.test(val.toString())){
-        val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
-    }
-    return val;
-}
 
 // Initiate the chart
 var chart = c3.generate({
@@ -73,20 +76,34 @@ var chart = c3.generate({
 		json: json_data,
 		keys: {
 				x: json_label,
-                value: [json_value1, json_value2, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21]
+                value: 
+                [json_value1, json_value2, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21] 
 		},
       	hide: [json_value1, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21],
         type: chart_type, 
     	color: function (color, value) {
             return chart_color;
         },
+        
         // groups: [[json_value1, json_value2, json_value3, json_value4, json_value5, json_value6, json_value7, json_value8, json_value9, json_value10, json_value11, json_value12, json_value13, json_value14, json_value15, json_value16, json_value17, json_value18, json_value19, json_value20, json_value21]],  // Never mind. This was for when I was going to show them as stacked area graph.
         labels: labels_show
     },
     axis: {
         x: {
             padding: { right: 0.5, left: 0.5 }
+
+        },
+        y : {
+            type : 'indexed',
+            tick: {
+                format: function (x) {
+                    return '$' + commaSeparateNumber(x);
+                }
+            },
+            zerobased: true,
+            min: 0
         }
+
     },
     grid: {
         x: {
@@ -135,4 +152,11 @@ $(document).ready(function() {
 
 $(window).resize(function() {
     iFrameChartResize()
+});
+
+
+    
+$("body").mouseleave(function(){
+    ga('send', 'event', 'Ferentz assts salaries', 'line chart touched'); 
+
 });

@@ -1,0 +1,13 @@
+var json_data = [
+	{"week":"41","flu-assoc-hospitalize":1},
+	{"week":"42","flu-assoc-hospitalize":3},
+	{"week":"43","flu-assoc-hospitalize":1},
+	{"week":"44","flu-assoc-hospitalize":3},
+	{"week":"45","flu-assoc-hospitalize":2},
+	{"week":"46","flu-assoc-hospitalize":7},
+	{"week":"47","flu-assoc-hospitalize":8},
+	{"week":"48","flu-assoc-hospitalize":26},
+	{"week":"49","flu-assoc-hospitalize":50},
+	{"week":"50","flu-assoc-hospitalize":65},
+	{"week":"51","flu-assoc-hospitalize":130}
+];
