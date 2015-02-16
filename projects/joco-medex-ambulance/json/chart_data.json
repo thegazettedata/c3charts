@@ -1,0 +1,7 @@
+var json_data = [
+	{"year":"2010","Ambulance calls":7365,"Medical Examiner cases":576},
+	{"year":"2011","Ambulance calls":7418,"Medical Examiner cases":584},
+	{"year":"2012","Ambulance calls":8208,"Medical Examiner cases":624},
+	{"year":"2013","Ambulance calls":9176,"Medical Examiner cases":699},
+	{"year":"2014","Ambulance calls":9374,"Medical Examiner cases":690}
+];

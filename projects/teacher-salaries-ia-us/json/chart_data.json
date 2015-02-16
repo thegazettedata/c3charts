@@ -1,0 +1,15 @@
+var json_data = [
+	{"year":"2001","Iowa teacher salaries":36480,"U.S. teacher salaries":43335},
+	{"year":"2002","Iowa teacher salaries":38230,"U.S. teacher salaries":44683},
+	{"year":"2003","Iowa teacher salaries":39059,"U.S. teacher salaries":45891},
+	{"year":"2004","Iowa teacher salaries":39432,"U.S. teacher salaries":46752},
+	{"year":"2005","Iowa teacher salaries":39284,"U.S. teacher salaries":47674},
+	{"year":"2006","Iowa teacher salaries":41083,"U.S. teacher salaries":49026},
+	{"year":"2007","Iowa teacher salaries":43130,"U.S. teacher salaries":50758},
+	{"year":"2008","Iowa teacher salaries":45664,"U.S. teacher salaries":52800},
+	{"year":"2009","Iowa teacher salaries":48638,"U.S. teacher salaries":54319},
+	{"year":"2010","Iowa teacher salaries":49626,"U.S. teacher salaries":55202},
+	{"year":"2011","Iowa teacher salaries":50634,"U.S. teacher salaries":56069},
+	{"year":"2012","Iowa teacher salaries":50240,"U.S. teacher salaries":55418},
+	{"year":"2013","Iowa teacher salaries":50914,"U.S. teacher salaries":56103}
+];

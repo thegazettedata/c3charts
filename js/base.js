@@ -33,19 +33,6 @@ function removeSpecialCharacters(string) {
     return string.replace(/[^\w\s]/gi, '').replace(/ /g,'');
 }
 
-
-// D3 click event
-// Call like so: $("#some-d3-element").d3Click();
-jQuery.fn.d3Click = function () {
-  this.each(function (i, e) {
-    var evt = document.createEvent("MouseEvents");
-    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-
-    e.dispatchEvent(evt);
-  });
-};
-
-
 // Resizes chart
 function windowResize() {
     // Autmatically sets the size of the chart

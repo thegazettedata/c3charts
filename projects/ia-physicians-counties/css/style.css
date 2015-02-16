@@ -1,0 +1,287 @@
+#chart-two-container {
+	display: none;
+}
+
+.toggle-view {
+	overflow: hidden;
+	width: 40%;
+	margin: 0 auto;
+}
+
+.toggle-view .toggle-view-option {
+	width: 46%;
+	padding: 1%;
+	text-align: center;
+	background-color: #eaf4fb;
+	color: #555;
+	font-weight: bold;
+	border-bottom: 3px solid #777;
+	cursor: pointer;
+}
+
+.toggle-view .selected, .toggle-view .toggle-view-option:hover {
+	background-color: #1f78b4;
+	border-bottom: 3px solid #444;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.toggle-view #toggle-view-option-left {
+	float: left;
+}
+
+.toggle-view #toggle-view-option-right {
+	float: right;
+}
+
+.c3 svg {
+	font-size: 12px;
+}
+
+.c3-circle {
+	opacity: 0.75 !important;
+	stroke: #FFF;
+	stroke-width: 1px;
+}
+
+#chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(13) > text > tspan, #chart-two > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(10) > text > tspan {
+	display: none;
+}
+
+/*#chart-two > svg > g:nth-child(2) > g:nth-child(4) > g.c3-xgrids > line:nth-child(3) {
+	stroke: #333 !important;
+	stroke-width: 1.5;
+	stroke-dasharray: 0;
+	stroke-opacity: 1;
+}*/
+
+
+.c3-tooltip th, .c3-tooltip-name-header td {
+	text-align: center !important;
+}
+
+.c3-tooltip td {
+	border-bottom: 1px solid #eee !important;
+	text-align: right;
+}
+
+.c3-tooltip .name {
+	text-align: left;
+}
+
+.c3-tooltip .c3-tooltip-change {
+	font-size: 17px;
+	text-align: center;
+}
+
+.chart-explainer {
+	position: absolute;
+	right: 10px;
+	width: 250px;
+	padding: 5px 2px;
+	/* background-color: #eee; */
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-shadow: 0px 1px 3px #CCC;
+	background-color: #FFF;
+	z-index: 10000;
+}
+
+.chart-explainer td {
+	font-size: 24px;
+	text-align: center;
+	margin: 0 auto;
+	width: 50%;
+	margin-bottom: 5px;
+	/* border: 1px solid #CCC; */
+	padding: 0%;
+	border-radius: -13px;
+}
+
+.chart-explainer p {
+	font-size: 12px;
+	line-height: 15px;
+	width: 98%;
+	margin-left: 1%;
+	margin-right: 1%;
+	margin-bottom: 0px;
+}
+
+.chart-explainer .fa-arrows-h {
+	color: #111;
+}
+.chart-explainer .circle {
+	border: 1px solid #FFF;
+	background-color: #a800ba;
+	width: 21px;
+	height: 21px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-left: auto;
+}
+
+.chart-explainer .required-ratios-table-open p {
+	cursor: pointer;
+	color: #1f78b4;
+	margin-top: 5px;
+}
+
+.chart-explainer .required-ratios-table-open p:hover {
+	text-decoration: underline;
+	color: #4b93c3;
+}
+
+#ratios-required-table-container {
+	display: block;
+	display: none;
+	width: 75%;
+	left: 12.5%;
+	position: fixed;
+	top: 0px;
+	background-color: #FFF;
+	font-size: 13px;
+	height: 400px;
+	overflow-y: scroll;
+	margin-bottom: 0px;
+	border: 1px solid #ccc;
+	padding: 5px;
+	box-shadow: 0px 5px 20px 0px #CCC;
+	z-index: 100000;
+}
+
+#ratios-required-table-container .fa-times-circle {
+	position: absolute;
+	right: 10px;
+	font-size: 35px;
+	color: #333;
+	cursor: pointer;
+}
+
+#ratios-required-table-container .fa-times-circle:hover {
+	color: #666;
+}
+
+#ratios-required-table td {
+	border-top: 1px dotted #ccc;
+}
+
+#ratios-required-table th, #ratios-required-table td {
+	padding: 6px 4px;
+	line-height: 16px;
+}
+
+#ratio-required-table .subhead {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+
+@media(max-width: 850px) {
+	#chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(1) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(3) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(5) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(7) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(9) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(11) > text > tspan {
+		display: none;
+	}
+}
+
+@media(max-width: 650px) {
+	.toggle-view {
+		width: 90%;
+		margin-bottom: 10px;
+	}
+
+	#content h5 {
+		font-size: 13px;
+		line-height: 16px
+	}
+
+	#ratios-required-table-container {
+		width: 97%;
+		left: 0%;
+	}
+}
+
+@media(max-width: 600px) {
+	#ratios-required-table-container p {
+		font-size: 12px;
+		line-height: 16px
+	}
+
+	#ratios-required-table th, #ratios-required-table td {
+		padding: 3px 2px;
+		font-size: 11px;
+		/* max-width: 25%; */
+	}
+
+	#ratios-required-table .SPECIALTIES-cell {
+		width: 20px}
+}
+
+@media(max-width: 500px) {
+	.chart-explainer {
+		width: 125px;
+	}
+
+	.chart-explainer .mousewheel {
+		display: none;
+	}
+
+	#chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(4) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(6) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(8) > text > tspan, #chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(10) > text > tspan {
+		display: none;
+	}
+
+	#chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(7) > text > tspan {
+		display: block
+	}
+
+	#chart-two > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(3) > text > tspan, #chart-two > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(5) > text > tspan, #chart-two > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(6) > text > tspan, #chart-two > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(7) > text > tspan, #chart-two > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g:nth-child(8) > text > tspan {
+		display: none
+	}
+
+	.c3-tooltip td {
+		font-size: 11px;
+		padding: 2px 3px;
+	}
+
+	.c3-tooltip .c3-tooltip-change {
+		font-size: 14px;
+	}
+}
+
+@media(max-width: 450px) {
+	.chart-explainer {
+		width: 100px;
+		padding: 3px 2px;
+	}
+
+	.chart-explainer p {
+		font-size: 11px;
+		line-height: 14px;
+	}
+
+	#ratios-required-table-container p {
+		font-size: 11px;
+		line-height: 15px
+	}
+
+	#ratios-required-table th, #ratios-required-table td {
+		padding: 2px 1px;
+		font-size: 10px;
+	}
+
+	#ratios-required-table .SPECIALTIES-cell {
+		max-width: 75px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	#ratios-required-table-container {
+		overflow-scrolling: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+@media(max-width: 350px) {
+	#ratios-required-table th, #ratios-required-table td {
+		text-align: center;
+	}
+}

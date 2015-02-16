@@ -156,8 +156,4 @@ function initializeTabletopObject(){
 // Doc ready
 $(document).ready(function() {
     initializeTabletopObject();
-
-    $("body").mouseleave(function(){
-        ga('send', 'event', 'Enter chart name here', 'Chart touched');
-    });
 });

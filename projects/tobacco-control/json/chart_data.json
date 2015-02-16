@@ -1,0 +1,10 @@
+var json_data = [
+	{"year":"2008","milliondollars":12.29},
+	{"year":"2009","milliondollars":null},
+	{"year":"2010","milliondollars":9.66},
+	{"year":"2011","milliondollars":null},
+	{"year":"2012","milliondollars":3.25},
+	{"year":"2013","milliondollars":3.65},
+	{"year":"2014","milliondollars":5.43},
+	{"year":"2015","milliondollars":5.52}
+];

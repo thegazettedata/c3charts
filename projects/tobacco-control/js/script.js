@@ -3,26 +3,26 @@ var chart_height = 320;
 
 // The label for these values
 // Will appear under x axis dashes
-var json_label = 'week';
+var json_label = 'year';
 // The field in the JSON file that has the numbers we want to chart
-var json_value = 'flu-assoc-hospitalize';
+var json_value = 'milliondollars';
 
 // Type of chart; i.e. area, bar, etc.
 // Types available: http://c3js.org/examples.html
-var chart_type = 'area';
+var chart_type = 'bar';
 
 // Color of lines, bars, etc.
-var chart_color = '#8B3A3A';
+var chart_color = '#99d8c9';
 
 // Whether or not to show the numbers
 // Above the bars, lines, etc.
-var labels_show = true;
+var labels_show = false;
 
 // Text to go before value in tooltip title
 // Can be blank
-var tooltip_title = 'Week ';
+var tooltip_title = 'Year: ';
 // Wording that will follow the value in the tooltip
-var tooltip_wording  = 'flu-associated<br>hospitalizations';
+var tooltip_wording  = 'million';
 
 // Whether or not to show the legend
 var legend_show = false;
@@ -45,10 +45,21 @@ var chart = c3.generate({
     axis: {
         x: {
             padding: { right: 0.5 }
+        },
+        y : {
+            label: {
+                text: 'In Millions',
+                position: 'outer-middle',
+            },
+            type : 'indexed',
+            tick: {
+                format: function (x) {
+                    return '$' + commaSeparateNumber(x);
+                }
+            },
+            zerobased: true,
+            min: 0
         }
-    },
-    area: {
-        zerobased: true
     },
     grid: {
         x: {
@@ -67,19 +78,13 @@ var chart = c3.generate({
 
             var value = value[0]['value'];
             var tooltip = '<table class="c3-tooltip">';
-
-            if (value == 1) {
-                tooltip_wording = 'flu-associated<br>hospitalization';
-            }
-            else tooltip_wording = 'flu-associated<br>hospitalizations';
-
             tooltip += '<tbody><tr>';
-            tooltip += '<th colspan="2">' + tooltip_title + ' ' + title + '</th>';
+            tooltip += '<th colspan="2">' + title + '</th>';
             tooltip += '</tr>';
             tooltip += '<tr class="c3-tooltip-name-units">';
             tooltip += '<td class="name">';
             tooltip += '<span style="background-color:' + chart_color + '"></span>';
-            tooltip += value + ' ' + tooltip_wording;
+            tooltip += '$' + value + ' ' + tooltip_wording;
             tooltip += '</td>';
             tooltip += '</tr></tbody></table>';
 
@@ -97,5 +102,9 @@ var chart = c3.generate({
 
 // Doc ready
 $(document).ready(function() {
-    windowResize()
+    windowResize();
+
+    $("body").mouseleave(function(){
+        ga('send', 'event', 'Tobacco control money', 'Chart touched');
+    });
 });

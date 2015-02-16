@@ -88,9 +88,5 @@ var chart = c3.generate({
 
 // Doc ready
 $(document).ready(function() {
-    windowResize();
-
-    $("body").mouseleave(function(){
-        ga('send', 'event', 'Enter chart name here', 'Chart touched');
-    });
+    windowResize()
 });

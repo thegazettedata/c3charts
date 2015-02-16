@@ -3,29 +3,31 @@ var chart_height = 320;
 
 // The label for these values
 // Will appear under x axis dashes
-var json_label = 'week';
+var json_label = 'year';
 // The field in the JSON file that has the numbers we want to chart
-var json_value = 'flu-assoc-hospitalize';
+var json_value = 'Ambulance calls';
+var json_value2 = 'Medical Examiner cases';
 
 // Type of chart; i.e. area, bar, etc.
 // Types available: http://c3js.org/examples.html
-var chart_type = 'area';
+var chart_type = 'line';
 
 // Color of lines, bars, etc.
-var chart_color = '#8B3A3A';
+var chart_color = '#99d8c9';
+var chart_color2 = '#feb24c';
 
 // Whether or not to show the numbers
 // Above the bars, lines, etc.
-var labels_show = true;
+var labels_show = false;
 
 // Text to go before value in tooltip title
 // Can be blank
-var tooltip_title = 'Week ';
+var tooltip_title = 'Year: ';
 // Wording that will follow the value in the tooltip
-var tooltip_wording  = 'flu-associated<br>hospitalizations';
+var tooltip_wording  = '';
 
 // Whether or not to show the legend
-var legend_show = false;
+var legend_show = true;
 
 // Initiate the chart
 var chart = c3.generate({
@@ -34,21 +36,45 @@ var chart = c3.generate({
 		json: json_data,
 		keys: {
 				x: json_label,
-                value: [json_value]
+                value: [json_value, json_value2]
 		},
       	type: chart_type, 
     	color: function (color, value) {
-            return chart_color;
+            // console.log(value["id"]);
+            if (value["id"] == "Ambulance calls") {
+                return chart_color2;
+            } 
+            else{
+                return chart_color;
+            };
+        },
+        axes: {
+            json_value: 'y',
+            json_value2: 'y2'
         },
         labels: labels_show
     },
     axis: {
         x: {
             padding: { right: 0.5 }
+        },
+        y : {
+            // label: {
+            //     text: 'In Millions',
+            //     position: 'outer-middle',
+            // },
+            type : 'indexed',
+            tick: {
+                format: function (x) {
+                    return '' + commaSeparateNumber(x);
+                }
+            },
+            zerobased: true,
+            min: 0
+        },
+        y2: {
+            show: true
         }
-    },
-    area: {
-        zerobased: true
     },
     grid: {
         x: {
@@ -63,23 +89,28 @@ var chart = c3.generate({
             // Capture title
             // var format = d3.format('$');
             // var title = format(value[0].x);
+
             var title = value[0].x;
 
-            var value = value[0]['value'];
+            var salValue1 = value[1]['value'];
+            var salValue2 = value[0]['value'];
+            
             var tooltip = '<table class="c3-tooltip">';
-
-            if (value == 1) {
-                tooltip_wording = 'flu-associated<br>hospitalization';
-            }
-            else tooltip_wording = 'flu-associated<br>hospitalizations';
-
             tooltip += '<tbody><tr>';
-            tooltip += '<th colspan="2">' + tooltip_title + ' ' + title + '</th>';
+            tooltip += '<th colspan="2">' + title + '</th>';
             tooltip += '</tr>';
+
             tooltip += '<tr class="c3-tooltip-name-units">';
             tooltip += '<td class="name">';
             tooltip += '<span style="background-color:' + chart_color + '"></span>';
-            tooltip += value + ' ' + tooltip_wording;
+            tooltip += '' + commaSeparateNumber(salValue1) + ' ' + 'Medical Examiner Cases';
+            tooltip += '</td>';
+            tooltip += '</tr>'
+
+            tooltip += '<tr class="c3-tooltip-name-units">';
+            tooltip += '<td class="name">';
+            tooltip += '<span style="background-color:' + chart_color2 + '"></span>';
+            tooltip += '' + commaSeparateNumber(salValue2) + ' ' + 'Ambulance Calls';
             tooltip += '</td>';
             tooltip += '</tr></tbody></table>';
 
@@ -97,5 +128,9 @@ var chart = c3.generate({
 
 // Doc ready
 $(document).ready(function() {
-    windowResize()
+    windowResize();
+
+    $("body").mouseleave(function(){
+        ga('send', 'event', 'JoCo Ambulance, Medical Examiner', 'Chart touched');
+    });
 });
