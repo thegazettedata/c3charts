@@ -42,7 +42,7 @@ function initChart() {
         data: {
     		json: global_tabletop_data,
     		keys: {
-                y: options['json_label'],
+                x: options['json_label'],
                 value: [options['json_value']]
             },
             type: options['chart_type'], 
@@ -53,6 +53,7 @@ function initChart() {
         },
         axis: {
             x: {
+                type: 'category',
                 padding: { right: 0.5 }
             }
         },

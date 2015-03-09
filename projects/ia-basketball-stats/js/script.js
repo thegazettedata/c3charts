@@ -1,7 +1,11 @@
 // TABLETOP
 // Google Docs spreadsheet key
 var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
-var hash = window.location.hash;
+var hash_split = window.location.hash.split('/');
+var hash = hash_split[0];
+// The field in the JSON file that has the numbers we want to chart
+// Example: offense
+var hash_two = hash_split[1];
 
 // Where we'll put data we load from Tabletop
 // Don't need to edit
@@ -11,49 +15,51 @@ var tabletop_data_export;
 // Global chart
 // Don't need to edit
 var chart;
+// The label for these values
+// Will appear under x axis dashes
+var json_label = 'school';
 
-// All the options for the chart
+// Whether or not to show the numbers
+// Above the bars, lines, etc.
+var labels_show = false;
+// Whether or not to show the legend
+var legend_show = false;
+
+// Options for each chart
 var options = {
-    // The label for these values
-    // Will appear under x axis dashes
-    json_label: 'school',
-    // The field in the JSON file that has the numbers we want to chart
-    json_value: 'offense',
     // Type of chart; i.e. area, bar, etc.
     // Types available: http://c3js.org/examples.html
     chart_type: 'bar',
     // Color of lines, bars, etc.
     chart_color: '#a0c6e8',
-    // Whether or not to show the numbers
-    // Above the bars, lines, etc.
-    labels_show: false,
-    // Whether or not to show the legend
-    legend_show: false,
     // Text to go before value in tooltip title
     // Can be blank
-    tooltip_title: 'Year: ',
+    tooltip_title: '',
     // Wording that will follow the value in the tooltip
-    tooltip_wording:  'items acquired'
+    tooltip_wording: 'items acquired'
 }
 
 // Initiate the chart
 function initChart() {
+    console.log(json_label);
+    console.log(global_tabletop_data);
     chart = c3.generate({
     	bindto: '#chart',
         data: {
     		json: global_tabletop_data,
     		keys: {
-                y: options['json_label'],
-                value: [options['json_value']]
+                x: json_label,
+                value: [hash_two]
             },
             type: options['chart_type'], 
             color: function (color, value) {
                 return options['chart_color'];
             },
-            labels: options['labels_show']
+            labels: labels_show
         },
         axis: {
             x: {
+                type: 'category',
                 padding: { right: 0.5 }
             }
         },
@@ -88,7 +94,7 @@ function initChart() {
             }
         },
         legend: {
-            show: options['legend_show']
+            show: legend_show
         },
         oninit: function () {
         	spinner.stop();

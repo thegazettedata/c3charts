@@ -28,7 +28,7 @@ var chart = c3.generate({
     data: {
 		json: json_data,
 		keys: {
-				y: options['json_label'],
+				x: options['json_label'],
                 value: [options['json_value']]
 		},
       	type: options['chart_type'], 
@@ -39,6 +39,7 @@ var chart = c3.generate({
     },
     axis: {
         x: {
+            type: 'category',
             padding: { right: 0.5 }
         }
     },
