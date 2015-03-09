@@ -16,12 +16,12 @@ var chart;
 var options = {
     // The label for these values
     // Will appear under x axis dashes
-    json_label: 'year',
+    json_label: 'school',
     // The field in the JSON file that has the numbers we want to chart
-    json_value: 'units',
+    json_value: 'offense',
     // Type of chart; i.e. area, bar, etc.
     // Types available: http://c3js.org/examples.html
-    chart_type: 'line',
+    chart_type: 'bar',
     // Color of lines, bars, etc.
     chart_color: '#a0c6e8',
     // Whether or not to show the numbers
@@ -43,7 +43,7 @@ function initChart() {
         data: {
     		json: global_tabletop_data,
     		keys: {
-                x: options['json_label'],
+                y: options['json_label'],
                 value: [options['json_value']]
             },
             type: options['chart_type'], 

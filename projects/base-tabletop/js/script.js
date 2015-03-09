@@ -42,7 +42,7 @@ function initChart() {
         data: {
     		json: global_tabletop_data,
     		keys: {
-                x: options['json_label'],
+                y: options['json_label'],
                 value: [options['json_value']]
             },
             type: options['chart_type'], 

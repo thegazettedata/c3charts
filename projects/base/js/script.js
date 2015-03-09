@@ -28,7 +28,7 @@ var chart = c3.generate({
     data: {
 		json: json_data,
 		keys: {
-				x: options['json_label'],
+				y: options['json_label'],
                 value: [options['json_value']]
 		},
       	type: options['chart_type'], 
