@@ -1,6 +1,7 @@
 // TABLETOP
 // Google Docs spreadsheet key
-var spreadsheet_key = '1I1kFgNtDyHG2kX9BfetoKtYiG39ko7M9uBpm-c_UGlk';
+var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
+var hash = window.location.hash;
 
 // Where we'll put data we load from Tabletop
 // Don't need to edit
@@ -108,10 +109,11 @@ function jsonReplacer(key, value) {
 
 
 // The name of the sheets in Google spreadsheet that we're using
-var tabletop_sheets = ['Sheet1'];
+var tabletop_sheets = ['Adjusted efficiency', 'Adjusted tempo', 'Effective FG percent', 'FT rate', 'Offense rebound percent', 'Turnover percent'];
 
 // Use Handlebars to load data from Tabletop to page
 function loadTabletopData(tabletop_data, tabletop) {
+    console.log(tabletop_data);
     // _.each(tabletop_data, function(element_data, num_data) {
     //     // console.log(element_data);
     //     var name = element_data['name'];
@@ -124,8 +126,12 @@ function loadTabletopData(tabletop_data, tabletop) {
 
     // Loop through sheets in Google Spreadhsheet
     _.each(tabletop_sheets, function(sheet, num_sheet) {
+        // Name of the sheet lowercased and without spaces
+        // So we can match with the doc's hash
+        var sheet_stripped = sheet.replace(/ /g,'').toLowerCase();
+
         // Push JSON of Tabletopdata to global var
-        if (sheet === 'Sheet1') {
+        if (hash === '#' + sheet_stripped) {
             global_tabletop_data = tabletop_data[sheet]['elements'], jsonReplacer;
         }
     }, this);

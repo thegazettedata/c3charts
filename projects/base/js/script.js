@@ -1,31 +1,26 @@
-// Set height of chart
-var chart_height = 320;
-
-// The label for these values
-// Will appear under x axis dashes
-var json_label = 'year';
-// The field in the JSON file that has the numbers we want to chart
-var json_value = 'units';
-
-// Type of chart; i.e. area, bar, etc.
-// Types available: http://c3js.org/examples.html
-var chart_type = 'line';
-
-// Color of lines, bars, etc.
-var chart_color = '#a0c6e8';
-
-// Whether or not to show the numbers
-// Above the bars, lines, etc.
-var labels_show = false;
-
-// Text to go before value in tooltip title
-// Can be blank
-var tooltip_title = 'Year: ';
-// Wording that will follow the value in the tooltip
-var tooltip_wording  = 'items acquired';
-
-// Whether or not to show the legend
-var legend_show = false;
+// All the options for the chart
+var options = {
+    // The label for these values
+    // Will appear under x axis dashes
+    json_label: 'year',
+    // The field in the JSON file that has the numbers we want to chart
+    json_value: 'units',
+    // Type of chart; i.e. area, bar, etc.
+    // Types available: http://c3js.org/examples.html
+    chart_type: 'line',
+    // Color of lines, bars, etc.
+    chart_color: '#a0c6e8',
+    // Whether or not to show the numbers
+    // Above the bars, lines, etc.
+    labels_show: false,
+    // Whether or not to show the legend
+    legend_show: false,
+    // Text to go before value in tooltip title
+    // Can be blank
+    tooltip_title: 'Year: ',
+    // Wording that will follow the value in the tooltip
+    tooltip_wording:  'items acquired'
+}
 
 // Initiate the chart
 var chart = c3.generate({
@@ -33,14 +28,14 @@ var chart = c3.generate({
     data: {
 		json: json_data,
 		keys: {
-				x: json_label,
-                value: [json_value]
+				x: options['json_label'],
+                value: [options['json_value']]
 		},
-      	type: chart_type, 
+      	type: options['chart_type'], 
     	color: function (color, value) {
-            return chart_color;
+            return options['chart_color'];
         },
-        labels: labels_show
+        labels: options['labels_show']
     },
     axis: {
         x: {
@@ -69,8 +64,8 @@ var chart = c3.generate({
             tooltip += '</tr>';
             tooltip += '<tr class="c3-tooltip-name-units">';
             tooltip += '<td class="name">';
-            tooltip += '<span style="background-color:' + chart_color + '"></span>';
-            tooltip += value + ' ' + tooltip_wording;
+            tooltip += '<span style="background-color:' + options['chart_color'] + '"></span>';
+            tooltip += value + ' ' + options['tooltip_wording'];
             tooltip += '</td>';
             tooltip += '</tr></tbody></table>';
 
@@ -78,7 +73,7 @@ var chart = c3.generate({
         }
     },
     legend: {
-        show: legend_show
+        show: options['legend_show']
     },
     oninit: function () {
     	spinner.stop();
