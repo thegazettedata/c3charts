@@ -66,6 +66,14 @@ function windowResize() {
 };
 
 
+// Click event to toggle how the chart looks
+$('.toggle-view-option').click(function() {
+    ga('send', 'event', 'C3 chart', 'Toggle view');
+
+    $(this).addClass('selected');
+    $(this).siblings().removeClass('selected');
+});
+
 // iFrame resize
 $(window).resize(function() {
     windowResize();

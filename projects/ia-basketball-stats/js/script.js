@@ -1,11 +1,13 @@
-// TABLETOP
-// Google Docs spreadsheet key
-var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
+// Grab hash to display the right chart
 var hash_split = window.location.hash.split('/');
 var hash = hash_split[0];
 // The field in the JSON file that has the numbers we want to chart
 // Example: offense
 var hash_two = hash_split[1];
+
+// TABLETOP
+// Google Docs spreadsheet key
+var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
 
 // Where we'll put data we load from Tabletop
 // Don't need to edit
@@ -15,47 +17,69 @@ var tabletop_data_export;
 // Global chart
 // Don't need to edit
 var chart;
-// The label for these values
-// Will appear under x axis dashes
-var json_label = 'school';
 
-// Whether or not to show the numbers
-// Above the bars, lines, etc.
-var labels_show = false;
-// Whether or not to show the legend
-var legend_show = false;
-
-// Options for each chart
-var options = {
+// Default ptions for each chart
+// Used with C3 chart build
+var options_default = {
     // Type of chart; i.e. area, bar, etc.
     // Types available: http://c3js.org/examples.html
     chart_type: 'bar',
-    // Color of lines, bars, etc.
-    chart_color: '#a0c6e8',
+    // The label for these values
+    // Will appear under x axis dashes
+    json_label: 'school',
     // Text to go before value in tooltip title
     // Can be blank
     tooltip_title: '',
     // Wording that will follow the value in the tooltip
-    tooltip_wording: 'items acquired'
+    tooltip_wording: 'points per possession',
+    // Whether or not to show the numbers
+    // Above the bars, lines, etc.
+    labels_show: false,
+    // Whether or not to show the legend
+    legend_show: false
+}
+
+// Options for individual schools
+// Used with C3 chart build
+var options_schools = {
+    'UNI': {
+        chart_color: '#442561'
+    },
+    'Iowa': {
+        chart_color: '#F3A41D'
+    },
+    'Iowa State': {
+        chart_color: '#90191C'
+    },
+    'National average': {
+        chart_color: '#a0c6e8'
+    }
 }
 
 // Initiate the chart
 function initChart() {
-    console.log(json_label);
-    console.log(global_tabletop_data);
     chart = c3.generate({
     	bindto: '#chart',
         data: {
     		json: global_tabletop_data,
     		keys: {
-                x: json_label,
+                x: options_default['json_label'],
                 value: [hash_two]
             },
-            type: options['chart_type'], 
-            color: function (color, value) {
-                return options['chart_color'];
+            names: {
+                number: 'Number of signed up users'
             },
-            labels: labels_show
+            type: options_default['chart_type'], 
+            color: function (color, value) {
+                var school = '';
+
+                // Find out school name to set the color correctly
+                if ( value.index !== undefined ) {
+                    school = global_tabletop_data[ value.index ]['school'];
+                    return options_schools[school]['chart_color'];
+                }
+            },
+            labels: options_default['labels_show']
         },
         axis: {
             x: {
@@ -76,7 +100,7 @@ function initChart() {
                 // Capture title
                 // var format = d3.format('$');
                 // var title = format(value[0].x);
-                var title = value[0].x;
+                var title = global_tabletop_data[ value[0].index ]['school'];
 
                 var value = value[0]['value'];
                 var tooltip = '<table class="c3-tooltip">';
@@ -85,8 +109,8 @@ function initChart() {
                 tooltip += '</tr>';
                 tooltip += '<tr class="c3-tooltip-name-units">';
                 tooltip += '<td class="name">';
-                tooltip += '<span style="background-color:' + options['chart_color'] + '"></span>';
-                tooltip += value + ' ' + options['tooltip_wording'];
+                tooltip += '<span style="background-color:' + options_default['chart_color'] + '"></span>';
+                tooltip += value + ' ' + options_default['tooltip_wording'];
                 tooltip += '</td>';
                 tooltip += '</tr></tbody></table>';
 
@@ -94,7 +118,7 @@ function initChart() {
             }
         },
         legend: {
-            show: legend_show
+            show: options_default['legend_show']
         },
         oninit: function () {
         	spinner.stop();
@@ -119,7 +143,6 @@ var tabletop_sheets = ['Adjusted efficiency', 'Adjusted tempo', 'Effective FG pe
 
 // Use Handlebars to load data from Tabletop to page
 function loadTabletopData(tabletop_data, tabletop) {
-    console.log(tabletop_data);
     // _.each(tabletop_data, function(element_data, num_data) {
     //     // console.log(element_data);
     //     var name = element_data['name'];
@@ -158,5 +181,6 @@ function initializeTabletopObject(){
 
 // Doc ready
 $(document).ready(function() {
-    initializeTabletopObject();
+    // Fire up Backbone
+    Backbone.history.start();
 });

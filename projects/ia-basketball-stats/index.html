@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Base chart using Tabletop | The Gazette/KCRG</title>
+    <title>Season in review: How Iowa's basketball teams fared | The Gazette/KCRG</title>
     <!-- <meta http-equiv="refresh" content="300"> -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
@@ -39,6 +39,10 @@
 <body>
     <!-- Content-->
     <div id="content">
+        <div id="toggle-view" class="toggle-view">
+            <a id="toggle-view-option-left" class="toggle-view-option selected">Offense</a>
+            <a id="toggle-view-option-right" class="toggle-view-option">Defense</a>
+        </div>
         <div id="chart"></div>
     </div>
     
@@ -74,9 +78,11 @@
     <script src="../../js/lib/d3.v3.min.js"></script>
     <script src="../../js/lib/c3-0.4.7.min.js"></script>
     <script src="../../js/c3-0.4.7.extensions.js"></script>
+    <script src="../../js/lib/backbone-1.1.2.min.js"></script>
     
     <!-- Base, custom JS -->
     <script src="../../js/base.js"></script>
+    <script src="js/router-view.js"></script>
     <script src="js/script.js"></script>
 
     <!-- Start Google Analytics Javascript -->

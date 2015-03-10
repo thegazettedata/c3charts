@@ -147,5 +147,6 @@ function initializeTabletopObject(){
 
 // Doc ready
 $(document).ready(function() {
-    initializeTabletopObject();
+    // Fire up Backbone
+    Backbone.history.start();
 });

@@ -64,6 +64,39 @@ html, body {
 	border-bottom: 1px solid #555;
 }
 
+/* If you have multiple charts and want to toggle them */
+.toggle-view {
+	overflow: hidden;
+	width: 40%;
+	margin: 0 auto;
+}
+
+.toggle-view .toggle-view-option {
+	width: 46%;
+	padding: 1%;
+	text-align: center;
+	background-color: #eaf4fb;
+	color: #555;
+	font-weight: bold;
+	border-bottom: 3px solid #777;
+	cursor: pointer;
+}
+
+.toggle-view .selected, .toggle-view .toggle-view-option:hover {
+	background-color: #1f78b4;
+	border-bottom: 3px solid #444;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.toggle-view #toggle-view-option-left {
+	float: left;
+}
+
+.toggle-view #toggle-view-option-right {
+	float: right;
+}
+
 @media(max-width:650px) {
 	.c3 svg {
 		font-size: 12px;
@@ -71,5 +104,9 @@ html, body {
 
 	.c3-legend-item {
 		font-size: 12px;
+	}
+
+	.toggle-view {
+		width: 90%;
 	}
 }
