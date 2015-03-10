@@ -82,11 +82,22 @@ function initChart() {
         }
     // Close chart
     });
+
+    windowResize();
+// Close initialize chart
 };
 
 // Doc ready
 $(document).ready(function() {
-    // Fire up Backbone
+    // Click event to toggle how the chart looks
+    $('.toggle-view-option').click(function() {
+        ga('send', 'event', 'C3 chart', 'Toggle view');
+
+        $(this).addClass('selected');
+        $(this).siblings().removeClass('selected');
+    });
+
+// Fire up Backbone
     Backbone.history.start();
 
     windowResize();

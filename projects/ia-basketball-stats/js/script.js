@@ -1,10 +1,3 @@
-// Grab hash to display the right chart
-var hash_split = window.location.hash.split('/');
-var hash = hash_split[0];
-// The field in the JSON file that has the numbers we want to chart
-// Example: offense
-var hash_two = hash_split[1];
-
 // TABLETOP
 // Google Docs spreadsheet key
 var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
@@ -32,9 +25,11 @@ var options_default = {
     tooltip_title: '',
     // Wording that will follow the value in the tooltip
     tooltip_wording: 'points per possession',
+    // Wording that will follow the value in the tooltip
+    tooltip_wording_two: 'National rank',
     // Whether or not to show the numbers
     // Above the bars, lines, etc.
-    labels_show: false,
+    labels_show: true,
     // Whether or not to show the legend
     legend_show: false
 }
@@ -56,6 +51,17 @@ var options_schools = {
     }
 }
 
+// Options for different chart types
+// Used with C3 chart build
+var options_charts = {
+    'adjustedefficiency': {
+        y_max_value: 1.4
+    },
+    'adjustedtempo': {
+        y_max_value: 75
+    }
+}
+
 // Initiate the chart
 function initChart() {
     chart = c3.generate({
@@ -64,10 +70,7 @@ function initChart() {
     		json: global_tabletop_data,
     		keys: {
                 x: options_default['json_label'],
-                value: [hash_two]
-            },
-            names: {
-                number: 'Number of signed up users'
+                value: [hash_three, hash_prev]
             },
             type: options_default['chart_type'], 
             color: function (color, value) {
@@ -84,7 +87,16 @@ function initChart() {
         axis: {
             x: {
                 type: 'category',
-                padding: { right: 0.5 }
+                padding: {
+                    right: 0
+                }
+            },
+            y: {
+                min: 0,
+                max: options_charts[hash_two]['y_max_value'],
+                padding: {
+                    top: 0, bottom: 0
+                }
             }
         },
         grid: {
@@ -100,18 +112,27 @@ function initChart() {
                 // Capture title
                 // var format = d3.format('$');
                 // var title = format(value[0].x);
-                var title = global_tabletop_data[ value[0].index ]['school'];
+                var school = global_tabletop_data[ value[0].index ]['school'];
+                var color = options_schools[school]['chart_color'];
+                var rank = global_tabletop_data[ value[0].index ][hash_three + 'rank'];
 
                 var value = value[0]['value'];
                 var tooltip = '<table class="c3-tooltip">';
                 tooltip += '<tbody><tr>';
-                tooltip += '<th colspan="2">' + title + '</th>';
+                tooltip += '<th colspan="2">' + school + '</th>';
                 tooltip += '</tr>';
                 tooltip += '<tr class="c3-tooltip-name-units">';
                 tooltip += '<td class="name">';
-                tooltip += '<span style="background-color:' + options_default['chart_color'] + '"></span>';
+                tooltip += '<span style="background-color:' + color + '"></span>';
                 tooltip += value + ' ' + options_default['tooltip_wording'];
                 tooltip += '</td>';
+                if (school !== 'National average') {
+                    tooltip += '</tr>';
+                    tooltip += '<tr class="c3-tooltip-name-units">';
+                    tooltip += '<td class="name">';
+                    tooltip += '<strong>' + options_default['tooltip_wording_two'] + '</strong>' + ': ' + rank;
+                    tooltip += '</td>';
+                }
                 tooltip += '</tr></tbody></table>';
 
                 return tooltip;
@@ -125,6 +146,9 @@ function initChart() {
         }
     // Close chart
     });
+    chart.hide(hash_prev);
+
+    windowResize();
 // Close chart function
 };
 
@@ -160,7 +184,7 @@ function loadTabletopData(tabletop_data, tabletop) {
         var sheet_stripped = sheet.replace(/ /g,'').toLowerCase();
 
         // Push JSON of Tabletopdata to global var
-        if (hash === '#' + sheet_stripped) {
+        if (hash_two === sheet_stripped) {
             global_tabletop_data = tabletop_data[sheet]['elements'], jsonReplacer;
         }
     }, this);
@@ -181,6 +205,17 @@ function initializeTabletopObject(){
 
 // Doc ready
 $(document).ready(function() {
+    // Click event to toggle how the chart looks
+    $('.toggle-view-option').click(function() {
+        ga('send', 'event', 'C3 chart', 'Toggle view');
+
+        $(this).addClass('selected');
+        $(this).siblings().removeClass('selected');
+
+        // Set right hash
+        approuter.navigate( 'chart/' + hash_two + '/' + $(this).attr('name'), {trigger: true} );
+    });
+
     // Fire up Backbone
     Backbone.history.start();
 });
