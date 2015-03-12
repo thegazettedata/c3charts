@@ -6,6 +6,7 @@ a {
 html, body {
 	padding: 0px !important;
 	margin: 0px;
+	/*overflow: hidden;*/
 }
 
 /* Styles for charts */
@@ -32,6 +33,7 @@ html, body {
 
 .c3 path {
 	stroke: #999;
+	stroke-width: 1px;
 }
 
 .c3-xgrid, .c3-ygrid {
@@ -96,6 +98,7 @@ html, body {
 .toggle-view #toggle-view-option-right {
 	float: right;
 }
+
 
 @media(max-width:650px) {
 	.c3 svg {

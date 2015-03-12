@@ -43,7 +43,26 @@
             <a id="toggle-view-option-left" class="toggle-view-option selected" name="offense">Offense</a>
             <a id="toggle-view-option-right" class="toggle-view-option" name="defense">Defense</a>
         </div>
-        <div id="chart"></div>
+        
+        <div class="chart-container">
+            <div id="chart-0" class="charts"></div>
+            <div id="chart-0-label" class="charts-labels"></div>
+        </div>
+        
+        <div class="chart-container">
+            <div id="chart-1" class="charts"></div>
+            <div id="chart-1-label" class="charts-labels"></div>
+        </div>
+
+        <div class="chart-container">
+            <div id="chart-2" class="charts"></div>
+            <div id="chart-2-label" class="charts-labels"></div>
+        </div>
+        
+        <div class="chart-container">
+            <div id="chart-3" class="charts"></div>
+            <div id="chart-3-label" class="charts-labels"></div>
+        </div>
     </div>
     
     <!-- Spin.js -->
@@ -74,7 +93,6 @@
     <!-- JS: Libraries -->
     <script src="../../js/lib/jquery-1.11.1.min.js"></script>
     <script src="../../js/lib/underscore-1.7.0.min.js"></script>
-    <script src="../../js/lib/tabletop-1.3.5.js"></script>
     <script src="../../js/lib/d3.v3.min.js"></script>
     <script src="../../js/lib/c3-0.4.7.min.js"></script>
     <script src="../../js/c3-0.4.7.extensions.js"></script>
@@ -82,18 +100,31 @@
     
     <!-- Base, custom JS -->
     <script src="../../js/base.js"></script>
+    <script src="json/console.json"></script>
     <script src="js/router-view.js"></script>
+    <script src="js/charts_universal.js"></script>
+    <script src="js/charts_bar.js"></script>
+    <script src="js/charts_gauge.js"></script>
     <script src="js/script.js"></script>
+
 
     <!-- Start Google Analytics Javascript -->
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-30416-68', 'auto');
-        ga('require', 'displayfeatures');
-        ga('send', 'pageview');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-30416-68', 'auto');
+      ga('require', 'displayfeatures');
+
+      if (typeof dimension1Value === "undefined" || dimension1Value === "") {
+        // undefined author
+      } else {
+        ga('set', 'dimension1', dimension1Value);
+      }
+
+      ga('send', 'pageview');
     </script>
 </body>
 </html>

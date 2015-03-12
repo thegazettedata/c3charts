@@ -5,7 +5,7 @@ var spreadsheet_key = '1I1kFgNtDyHG2kX9BfetoKtYiG39ko7M9uBpm-c_UGlk';
 // Where we'll put data we load from Tabletop
 // Don't need to edit
 var global_tabletop_data;
-var tabletop_data_export;
+var tabletop_data_export = {};
 
 // Global chart
 // Don't need to edit
@@ -139,6 +139,8 @@ function loadTabletopData(tabletop_data, tabletop) {
 
 // Pull data from Google spreadsheet via Tabletop
 function initializeTabletopObject(){
+    // loadTabletopData(tabletop_data);
+
     Tabletop.init({
         key: spreadsheet_key,
         callback: loadTabletopData,
