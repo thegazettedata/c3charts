@@ -1,6 +1,6 @@
 // TABLETOP
 // Google Docs spreadsheet key
-// var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
+var spreadsheet_key = '1CXSNt2f_oEcNUePR7ZwwCN6_R0AYbMVNC3Ue85_FFs8';
 
 // Where we'll put data we load from Tabletop
 // Don't need to edit
@@ -64,14 +64,14 @@ function loadTabletopData(tabletop_data, tabletop) {
 
 // Pull data from Google spreadsheet via Tabletop
 function initializeTabletopObject(){
-    loadTabletopData(tabletop_data); 
+    // loadTabletopData(tabletop_data); 
 
-    // Tabletop.init({
-    //     key: spreadsheet_key,
-    //     callback: loadTabletopData,
-    //     simpleSheet: false,
-    //     debug: false
-    // });
+    Tabletop.init({
+        key: spreadsheet_key,
+        callback: loadTabletopData,
+        simpleSheet: false,
+        debug: false
+    });
 }
 
 // Doc ready

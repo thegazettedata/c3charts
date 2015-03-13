@@ -72,6 +72,7 @@ function chartWidthSet(chart, chart_width, num_charts) {
         // New height of chart is height of window minus height of ther elements
         var new_chart_height = window_height - 10 - misc_heights;
 
+        // Content is wrapped around al lthe content
         $('#content').height( window_height );
 
         // If we have one chart on the page or all the charts are on the same line
