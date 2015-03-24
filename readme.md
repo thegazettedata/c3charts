@@ -16,7 +16,7 @@ This command copies everything within the "base" directory into a directory with
 
 
 #Deploy to FTP server
-When you are done with your chart, you can deploy it to our FTP server with one command. First you need to make sure a few things are installed on your computer.
+When you are done with your chart, you can deploy it to our FTP server with one command. First you need to make sure a few things are installed on your computer. If you are using a Mac, do the following:
 
 Make sure you have Homebrew installed:
 
@@ -26,13 +26,17 @@ Install node via Homebrew:
 	
 	brew install node
 
+If you are using a Windows machine, download Node [here](https://nodejs.org/download/).
+
 Install npm dependencies:
 	
 	npm install
 
 Make sure Grunt is install correctly:
 	
-	sudo npm install -g grunt-cli 
+	sudo npm install -g grunt-cli
+
+If you're one Windows machine and are using a PowerShell console, you may want to need add the following [here](https://github.com/gruntjs/grunt/issues/774#issuecomment-58268520)
 
 -- Note: Dependencies for Grunt are put into package.json. If any new dependencies are put in there, you need to install them by running:
 	

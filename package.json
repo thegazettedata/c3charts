@@ -1,11 +1,15 @@
 {
     "name": "gazette-kcrg-data-c3charts",
     "description": "Grunt tasks for working with c3 charts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GazetteKCRGdata/c3charts.git"
+    },
     "private": false,
     "devDependencies": {
         "grunt": "~0.4.1",
         "matchdep": "~0.1.2",
-        "grunt-sftp-deploy": "0.0.11"
+        "grunt-sftp-deploy": "0.2.2"
     },
     "engines": {
         "node": ">=0.8.0"
