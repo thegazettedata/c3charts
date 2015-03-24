@@ -8,6 +8,43 @@ The base folder in the projects folder is meant to be copied and pasted whenever
 
 The base-tabletop folder is the same as the base folder, only the chart here is running off of data that is in a [Google spreadsheet](https://docs.google.com/spreadsheets/d/1I1kFgNtDyHG2kX9BfetoKtYiG39ko7M9uBpm-c_UGlk/edit#gid=0). We are using [Tabletop](https://github.com/jsoma/tabletop) to grab the data.
 
+To copy one of those directories and create another one within the projects folder, run this command:
+
+	cp -avR projects/base  projects/name_of_project_here
+
+This command copies everything within the "base" directory into a directory within the projects folder. Change "name_of_project_here" to whatever you want the new directory to be called
+
+
+#Deploy to FTP server
+When you are done with your chart, you can deploy it to our FTP server with one command. First you need to make sure a few things are installed on your computer.
+
+Make sure you have Homebrew installed:
+
+	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+
+Install node via Homebrew:	
+	
+	brew install node
+
+Install npm dependencies:
+	
+	npm install
+
+Make sure Grunt is install correctly:
+	
+	sudo npm install -g grunt-cli 
+
+-- Note: Dependencies for Grunt are put into package.json. If any new dependencies are put in there, you need to install them by running:
+	
+	npm install
+
+Finally, once all that is installed, you can deploy your project to our FTP server by running:
+
+	grunt deploy --project=name_of_project_here
+
+Replace "name_of_project_here" with the name of the project you created
+
+#Iframing charts with stories
 
 If you are iFraming the chart on a page, the iFrame.html file within the base folder includes CSS and JS to make the chart responsive.
 
@@ -64,31 +101,3 @@ You can also add a header and about text like so:
 ```
 
 NOTE: You must include "scrolling:no" in the iframe for this solution to work on iPhones. The code that makes these responsive iframes work is found here: [http://thegazette.com/js/article-embeds.js](http://thegazette.com/js/article-embeds.js). Find the "findResponsiveIframes()" for the code.
-
-
-#Deploy to FTP server
-Make sure you have Homebrew installed, if you don't already:
-
-	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-
-Install node via Homebrew:	
-	
-	brew install node
-
-Install npm dependencies:
-	
-	npm install
-
-Make sure Grunt is install correctly:
-	
-	sudo npm install -g grunt-cli 
-
--- Note: Dependencies for Grunt are put into package.json. If any new dependencies are put in there, you need to install them by running:
-	
-	npm install
-
-Finally, once all that is installed, you can deploy your project to our FTP server by running:
-
-	grunt deploy --project=name_of_project_here
-
-Replace "name_of_project_here" with the name of the project you created
