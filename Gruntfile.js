@@ -14,7 +14,8 @@ module.exports = function (grunt) {
                     authKey: 'smgKey'
                 },
                 src: 'projects/' + folder,
-                dest: '/c3charts/projects/' + folder
+                dest: '/c3charts/projects/' + folder,
+                serverSep: '/'
             }
         }
     });
