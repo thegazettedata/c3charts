@@ -46,7 +46,12 @@ Replace "name_of_project_here" with the name of the project you created
 
 
 #Push to Github
-Here's some basic Github commands that you'll need to run to push your projects to Github. First see what has changed on your local machine:
+Here's some basic Github commands that you'll need to run to push your projects to Github. First, pull down all changes that have been made to the directory by other people onto your local machine:
+
+	git pull
+
+Then see what you have changed on your local machine:
+	
 	git status
 
 If you have added files, run:
