@@ -44,6 +44,27 @@ Finally, once all that is installed, you can deploy your project to our FTP serv
 
 Replace "name_of_project_here" with the name of the project you created
 
+
+#Push to Github
+Here's some basic Github commands that you'll need to run to push your projects to Github. First see what has changed on your local machine:
+	git status
+
+If you have added files, run:
+
+	git add .
+	
+If you have added and removed files, run:
+
+	git add --all
+
+Commit any changes you've made:
+
+	git commit -m "message_goes_here"
+
+Finally, push all the changes on your local machine to Github:
+
+	git push
+
 #Iframing charts into stories
 
 If you are iFraming the chart on a page, the iFrame.html file within the base folder includes CSS and JS to make the chart responsive.
