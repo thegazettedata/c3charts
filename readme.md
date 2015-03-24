@@ -44,7 +44,7 @@ Finally, once all that is installed, you can deploy your project to our FTP serv
 
 Replace "name_of_project_here" with the name of the project you created
 
-#Iframing charts with stories
+#Iframing charts into stories
 
 If you are iFraming the chart on a page, the iFrame.html file within the base folder includes CSS and JS to make the chart responsive.
 
