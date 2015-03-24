@@ -1,5 +1,3 @@
-// OhYeah
-
 // Set height of chart
 var chart_height = 320;
 
