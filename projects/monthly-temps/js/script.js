@@ -57,6 +57,10 @@ var chart = c3.generate({
             show: true
         }
     },
+<<<<<<< HEAD
+    
+=======
+>>>>>>> origin/master
     // tooltip: {
     //     contents: function (value, defaultTitleFormat, defaultValueFormat, color) {
     //         // Capture title
