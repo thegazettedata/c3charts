@@ -1,0 +1,4 @@
+var json_data = [
+{"Year":2013,"4WD Farm Tractors":834,"Self-Prop Combines":1275},
+{"Year":2014,"4WD Farm Tractors":425,"Self-Prop Combines":760}
+];

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var json_data = [
 {"month":"Jan.","All-Time Average":19.4,"2014":14.0},
 {"month":"Feb.","All-Time Average":24.0,"2014":12.5},
@@ -12,3 +13,19 @@ var json_data = [
 {"month":"Nov.","All-Time Average":36.6,"2014":29.1},
 {"month":"Dec.","All-Time Average":22.9,"2014":28.2}
 ];
+=======
+var json_data = [
+{"month":"Jan.","All-Time Average":19.4,"2014":14},
+{"month":"Feb.","All-Time Average":24,"2014":12.5},
+{"month":"Mar.","All-Time Average":35.9,"2014":29.3},
+{"month":"Apr.","All-Time Average":48.9,"2014":47.2},
+{"month":"May","All-Time Average":60.1,"2014":60.1},
+{"month":"June","All-Time Average":69.7,"2014":70.3},
+{"month":"July","All-Time Average":73.6,"2014":69},
+{"month":"Aug.","All-Time Average":71.5,"2014":71.5},
+{"month":"Sept.","All-Time Average":63.2,"2014":62},
+{"month":"Oct.","All-Time Average":50.8,"2014":51.2},
+{"month":"Nov.","All-Time Average":36.6,"2014":29.1},
+{"month":"Dec.","All-Time Average":22.9,"2014":28.2}
+];
+>>>>>>> origin/master

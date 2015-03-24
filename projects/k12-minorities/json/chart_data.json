@@ -1,0 +1,11 @@
+var json_data = [
+	{"year":"2005","Percent minorities":13.4},
+	{"year":"2006","Percent minorities":14.0},
+	{"year":"2007","Percent minorities":14.8},
+	{"year":"2008","Percent minorities":15.4},
+	{"year":"2009","Percent minorities":17.6},
+	{"year":"2010","Percent minorities":18.5},
+	{"year":"2011","Percent minorities":19.3},
+	{"year":"2012","Percent minorities":20.2},
+	{"year":"2013","Percent minorities":21.1}
+];

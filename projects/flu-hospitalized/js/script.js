@@ -84,7 +84,6 @@ var chart = c3.generate({
             tooltip += '</tr></tbody></table>';
 
             return tooltip;
-            ga('send', 'event', 'flu', 'tooltip shown');
         }
     },
     legend: {

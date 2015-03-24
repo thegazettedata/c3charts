@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Physicians by county in Iowa | The Gazette/KCRG</title>
+    <!-- <meta http-equiv="refresh" content="300"> -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <link rel="shortcut icon" href="/../imgs/gazette-kcrg.png" />
+    <!-- Mobile meta tags-->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="cleartype" content="on">
+    <link rel="apple-touch-icon" href="/../imgs/gazette-kcrg.png"/>
+    
+    <!-- Social meta tags-->
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="The Gazette/KCRG"/>
+    <meta property="twitter:site" content="@gazettedotcom">
+    <meta property="twitter:image" content="/../imgs/gazette-kcrg.png">
+
+    <!-- INCLUDES -->
+    <!-- Base styles: Libraries -->
+    <link rel="stylesheet" href="../../css/lib/bootstrap-2.3.2.min.css" />
+    <link rel="stylesheet" href="../../css/lib/bootstrap-responsive-2.3.2.min.css" />
+    <link rel="stylesheet" href="../../css/lib/font-awesome-4.2.0.min.css" />
+    <link rel="stylesheet" href="../../css/lib/c3-0.4.7.min.css" />
+    
+    <!-- Base, custom styles -->
+    <link rel="stylesheet" href="http://thegazette.com/Includes/data/css/base.css" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+    h5 {
+        font-size: 15px;
+        line-height: 18px;
+        margin: 0;
+    }
+    </style>
+    <!-- Load Spin.js -->
+    <script src="../../js/lib/spin-2.0.1.min.js"></script>
+</head>
+<body>
+    <!-- Content-->
+    <div id="content">
+        <div id="toggle-view" class="toggle-view">
+            <a id="toggle-view-option-left" class="toggle-view-option selected">Ratio</a>
+            <a id="toggle-view-option-right" class="toggle-view-option">Change in ratio</a>
+        </div>
+
+        <div id="chart-one-container">
+            <h5>County population</h5>
+            <div class="chart-explainer">
+                <table><tr><td class="mousewheel">
+                    <span class="fa fa-arrows-h"></span>
+                    <p>Use the mousewheel to zoom in and out of the chart</p>
+                </td><td>
+                    <span class="circle"></span>
+                    <p>Counties in purple are located in eastern Iowa</p>
+                </td></tr>
+                <tr><td class="required-ratios-table-open" colspan="2">
+                    <p>What the required ratios for different specialities?</p>
+                </td></tr></table>
+            </div>
+            <div id="chart"></div>
+            <h5 style="text-align: center;">Physicians-to-population ratio by county (Feb. 2015)</h5>
+        </div>
+
+        <div id="chart-two-container">
+            <h5>County population</h5>
+            <div class="chart-explainer">
+                <table><tr><td class="mousewheel">
+                    <span class="fa fa-arrows-h"></span>
+                    <p>Use the mousewheel to zoom in and out of the chart</p>
+                </td><td>
+                    <span class="circle"></span>
+                    <p>Counties in purple are located in eastern Iowa</p>
+                </td></tr>
+                <tr><td class="required-ratios-table-open" colspan="2">
+                    <p>What the required ratios for different specialities?</p>
+                </td></tr></table>
+            </div>
+            <div id="chart-two"></div>
+            <h5 style="text-align: center;">Change in physicians-to-population ratio: 1989 - 2009</h5>
+        </div>
+    </div>
+
+<div id="ratios-required-table-container">
+<span class="fa fa-times-circle"></span>
+<h4>Required ratios</h4>
+<p>Below are the physician-to-population ratios required for various specialities. According to a review of these ratios by <a href="http://www.merritthawkins.com/pdf/a-review-of-physician-to-population-ratios.pdf" target="_blank">Merritt Hawkins</a>, "these ratios serve as a useful starting point in assessing community needs for physicians." The four columns represent experts in the field and their ratio recommendations.</p>
+<table id="ratios-required-table" class="table">
+  <thead>
+    <tr>
+      <th class="SPECIALTIES-cell">SPECIALTIES</th>
+      <th class="GMENAC-cell">GMENAC</th>
+      <th class="GOODMAN-cell">GOODMAN</th>
+      <th class="HICKS & GLENN-cell">HICKS & GLENN</th>
+      <th class="SOLUCIENT-cell">SOLUCIENT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="firstRow">
+      <td class="SPECIALTIES-cell subhead">Primary Care</td>
+      <td class="GMENAC-cell"></td>
+      <td class="GOODMAN-cell"></td>
+      <td class="HICKS & GLENN-cell"></td>
+      <td class="SOLUCIENT-cell"></td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Family Practice</td>
+      <td class="GMENAC-cell">1 in 4,000</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">1 in 6,250</td>
+      <td class="SOLUCIENT-cell">1 in 4,348</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Internal Medicine</td>
+      <td class="GMENAC-cell">1 in 3,448</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">1 in 9,091</td>
+      <td class="SOLUCIENT-cell">1 in 5,263</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Pediatrics</td>
+      <td class="GMENAC-cell">1 in 7,692</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">1 in 12,500</td>
+      <td class="SOLUCIENT-cell">1 in 7,194</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell subhead">Medical Specialties</td>
+      <td class="GMENAC-cell"></td>
+      <td class="GOODMAN-cell"></td>
+      <td class="HICKS & GLENN-cell"></td>
+      <td class="SOLUCIENT-cell"></td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Allergy/Immunology</td>
+      <td class="GMENAC-cell">1 in 125,000</td>
+      <td class="GOODMAN-cell">1 in 100,000</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 50,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Cardiology</td>
+      <td class="GMENAC-cell">1 in 33,333</td>
+      <td class="GOODMAN-cell">1 in 25,000</td>
+      <td class="HICKS & GLENN-cell">1 in 33,333</td>
+      <td class="SOLUCIENT-cell">1 in 25,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Dermatology</td>
+      <td class="GMENAC-cell">1 in 33,333</td>
+      <td class="GOODMAN-cell">1 in 100,000</td>
+      <td class="HICKS & GLENN-cell">1 in 50,000</td>
+      <td class="SOLUCIENT-cell">1 in 33,333</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Endocrinology</td>
+      <td class="GMENAC-cell">1 in 125,000</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">NA</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Gastroenterology</td>
+      <td class="GMENAC-cell">1 in 33,333</td>
+      <td class="GOODMAN-cell">1 in 100,000</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 28,571</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Hematology/Oncology</td>
+      <td class="GMENAC-cell">1 in 25,000</td>
+      <td class="GOODMAN-cell">1 in 100,000</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 100,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Infectious Disease</td>
+      <td class="GMENAC-cell">1 in 111,111</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">NA</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Nephrology</td>
+      <td class="GMENAC-cell">1 in 100,000</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 136,986</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Neurology</td>
+      <td class="GMENAC-cell">1 in 50,000</td>
+      <td class="GOODMAN-cell">1 in 50,000</td>
+      <td class="HICKS & GLENN-cell">1 in 100,000</td>
+      <td class="SOLUCIENT-cell">1 in 50,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Psychiatry</td>
+      <td class="GMENAC-cell">1 in 6,250</td>
+      <td class="GOODMAN-cell">1 in 14,286</td>
+      <td class="HICKS & GLENN-cell">1 in 25,000</td>
+      <td class="SOLUCIENT-cell">1 in 16,667</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Pulmonology</td>
+      <td class="GMENAC-cell">1 in 50,000</td>
+      <td class="GOODMAN-cell">1 in 100,000</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 76,923</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Rheumatology</td>
+      <td class="GMENAC-cell">1 in 142,857</td>
+      <td class="GOODMAN-cell">1 in 250,000</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 100,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Other Medical Specialties</td>
+      <td class="GMENAC-cell">NA</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 50,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell subhead">Surgical Specialties</td>
+      <td class="GMENAC-cell"></td>
+      <td class="GOODMAN-cell"></td>
+      <td class="HICKS & GLENN-cell"></td>
+      <td class="SOLUCIENT-cell"></td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">General Surgery</td>
+      <td class="GMENAC-cell">1 in 10,000</td>
+      <td class="GOODMAN-cell">1 in 10,000</td>
+      <td class="HICKS & GLENN-cell">1 in 25,000</td>
+      <td class="SOLUCIENT-cell">1 in 16,667</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Neurosurgery</td>
+      <td class="GMENAC-cell">1 in 100,000</td>
+      <td class="GOODMAN-cell">1 in 14,2857</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">NA</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">OB/GYN</td>
+      <td class="GMENAC-cell">1 in 10,000</td>
+      <td class="GOODMAN-cell">1 in 12,500</td>
+      <td class="HICKS & GLENN-cell">1 in 12,500</td>
+      <td class="SOLUCIENT-cell">1 in 10,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Ophthalmology</td>
+      <td class="GMENAC-cell">1 in 20,000</td>
+      <td class="GOODMAN-cell">1 in 25,000</td>
+      <td class="HICKS & GLENN-cell">1 in 33,333</td>
+      <td class="SOLUCIENT-cell">1 in 20,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Orthopedic Surgery</td>
+      <td class="GMENAC-cell">1 in 16,667</td>
+      <td class="GOODMAN-cell">1 in 16,667</td>
+      <td class="HICKS & GLENN-cell">1 in 25,000</td>
+      <td class="SOLUCIENT-cell">1 in 16,667</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Plastic Surgery</td>
+      <td class="GMENAC-cell">1 in 100,000</td>
+      <td class="GOODMAN-cell">1 in 10,0000</td>
+      <td class="HICKS & GLENN-cell">1 in 50,000</td>
+      <td class="SOLUCIENT-cell">1 in 50,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Urology</td>
+      <td class="GMENAC-cell">1 in 33,333</td>
+      <td class="GOODMAN-cell">1 in 33,333</td>
+      <td class="HICKS & GLENN-cell">1 in 50,000</td>
+      <td class="SOLUCIENT-cell">1 in 33,333</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Other Surgical Specialties</td>
+      <td class="GMENAC-cell">NA</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 45,455</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell subhead">Hospital-Based</td>
+      <td class="GMENAC-cell"></td>
+      <td class="GOODMAN-cell"></td>
+      <td class="HICKS & GLENN-cell"></td>
+      <td class="SOLUCIENT-cell"></td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Emergency</td>
+      <td class="GMENAC-cell">1 in 11,111</td>
+      <td class="GOODMAN-cell">1 in 33,333</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 8,333</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Anesthesiology</td>
+      <td class="GMENAC-cell">1 in 12,500</td>
+      <td class="GOODMAN-cell">1 in 14,286</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">NA</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Radiology</td>
+      <td class="GMENAC-cell">1 in 11,111</td>
+      <td class="GOODMAN-cell">1 in 12,500</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">NA</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Pathology</td>
+      <td class="GMENAC-cell">1 in 16,667</td>
+      <td class="GOODMAN-cell">1 in 25,000</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">NA</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell subhead">Pediatric Subspecialties</td>
+      <td class="GMENAC-cell"></td>
+      <td class="GOODMAN-cell"></td>
+      <td class="HICKS & GLENN-cell"></td>
+      <td class="SOLUCIENT-cell"></td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Pediatric Cardiology</td>
+      <td class="GMENAC-cell">NA</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 500,000</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Pediatric Neurology</td>
+      <td class="GMENAC-cell">NA</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 833,333</td>
+    </tr>
+    <tr>
+      <td class="SPECIALTIES-cell">Pediatric Psychiatry</td>
+      <td class="GMENAC-cell">NA</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 222,222</td>
+    </tr>
+    <tr class="lastRow">
+      <td class="SPECIALTIES-cell">Other Pediatric Subspecialties</td>
+      <td class="GMENAC-cell">NA</td>
+      <td class="GOODMAN-cell">NA</td>
+      <td class="HICKS & GLENN-cell">NA</td>
+      <td class="SOLUCIENT-cell">1 in 112,360</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    
+    <!-- Spin.js -->
+    <script>
+    var opts = {
+        lines: 13, // The number of lines to draw
+        length: 20, // The length of each line
+        width: 10, // The line thickness
+        radius: 30, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 0, // The rotation offset
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#000', // #rgb or #rrggbb or array of colors
+        speed: 1, // Rounds per second
+        trail: 60, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spinner', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: '150px', // Top position relative to parent
+        left: '50%' // Left position relative to parent
+    };
+    var target = document.getElementById('content');
+    var spinner = new Spinner(opts);
+    spinner.spin(target);
+    </script>
+    
+    <!-- JS: Libraries -->
+    <script src="../../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../../js/lib/underscore-1.7.0.min.js"></script>
+    <script src="../../js/lib/d3.v3.min.js"></script>
+    <script src="../../js/lib/c3-0.4.7.min.js"></script>
+    <script src="../../js/c3-0.4.7.extensions.js"></script>
+    
+    <!-- Base, custom JS -->
+    <script src="json/chart_data.json"></script>
+    <script src="json/chart_data_two.json"></script>
+    <script src="../../js/base.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Start Google Analytics Javascript -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-30416-68', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>

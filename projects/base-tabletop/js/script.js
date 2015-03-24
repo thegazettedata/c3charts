@@ -5,42 +5,35 @@ var spreadsheet_key = '1I1kFgNtDyHG2kX9BfetoKtYiG39ko7M9uBpm-c_UGlk';
 // Where we'll put data we load from Tabletop
 // Don't need to edit
 var global_tabletop_data;
-var tabletop_data_export;
-
-// The label for these values
-// Will appear under x axis dashes
-var json_label = 'year';
-// The field in the JSON file that has the numbers we want to chart
-var json_value = 'units';
-
-
-// CHART OPTIONS
-// Set height of chart
-var chart_height = 320;
-
-// Type of chart; i.e. area, bar, etc.
-// Types available: http://c3js.org/examples.html
-var chart_type = 'line';
-
-// Color of lines, bars, etc.
-var chart_color = '#a0c6e8';
-
-// Whether or not to show the numbers
-// Above the bars, lines, etc.
-var labels_show = false;
-
-// Text to go before value in tooltip title
-// Can be blank
-var tooltip_title = 'Year: ';
-// Wording that will follow the value in the tooltip
-var tooltip_wording  = 'items acquired';
-
-// Whether or not to show the legend
-var legend_show = false;
+var tabletop_data_export = {};
 
 // Global chart
 // Don't need to edit
 var chart;
+
+// All the options for the chart
+var options = {
+    // The label for these values
+    // Will appear under x axis dashes
+    json_label: 'year',
+    // The field in the JSON file that has the numbers we want to chart
+    json_value: 'units',
+    // Type of chart; i.e. area, bar, etc.
+    // Types available: http://c3js.org/examples.html
+    chart_type: 'line',
+    // Color of lines, bars, etc.
+    chart_color: '#a0c6e8',
+    // Whether or not to show the numbers
+    // Above the bars, lines, etc.
+    labels_show: false,
+    // Whether or not to show the legend
+    legend_show: false,
+    // Text to go before value in tooltip title
+    // Can be blank
+    tooltip_title: 'Year: ',
+    // Wording that will follow the value in the tooltip
+    tooltip_wording:  'items acquired'
+}
 
 // Initiate the chart
 function initChart() {
@@ -49,17 +42,18 @@ function initChart() {
         data: {
     		json: global_tabletop_data,
     		keys: {
-    				x: json_label,
-                    value: [json_value]
-    		},
-          	type: chart_type, 
-        	color: function (color, value) {
-                return chart_color;
+                x: options['json_label'],
+                value: [options['json_value']]
             },
-            labels: labels_show
+            type: options['chart_type'], 
+            color: function (color, value) {
+                return options['chart_color'];
+            },
+            labels: options['labels_show']
         },
         axis: {
             x: {
+                type: 'category',
                 padding: { right: 0.5 }
             }
         },
@@ -85,8 +79,8 @@ function initChart() {
                 tooltip += '</tr>';
                 tooltip += '<tr class="c3-tooltip-name-units">';
                 tooltip += '<td class="name">';
-                tooltip += '<span style="background-color:' + chart_color + '"></span>';
-                tooltip += value + ' ' + tooltip_wording;
+                tooltip += '<span style="background-color:' + options['chart_color'] + '"></span>';
+                tooltip += value + ' ' + options['tooltip_wording'];
                 tooltip += '</td>';
                 tooltip += '</tr></tbody></table>';
 
@@ -94,7 +88,7 @@ function initChart() {
             }
         },
         legend: {
-            show: legend_show
+            show: options['legend_show']
         },
         oninit: function () {
         	spinner.stop();
@@ -102,7 +96,7 @@ function initChart() {
     // Close chart
     });
 
-    iFrameChartResize();
+    windowResize();
 // Close chart function
 };
 
@@ -145,6 +139,8 @@ function loadTabletopData(tabletop_data, tabletop) {
 
 // Pull data from Google spreadsheet via Tabletop
 function initializeTabletopObject(){
+    // loadTabletopData(tabletop_data);
+
     Tabletop.init({
         key: spreadsheet_key,
         callback: loadTabletopData,
@@ -155,9 +151,14 @@ function initializeTabletopObject(){
 
 // Doc ready
 $(document).ready(function() {
-    initializeTabletopObject();
+    // Click event to toggle how the chart looks
+    $('.toggle-view-option').click(function() {
+        ga('send', 'event', 'C3 chart', 'Toggle view');
 
-    $("body").mouseleave(function(){
-        ga('send', 'event', 'Enter chart name here', 'Chart touched');
+        $(this).addClass('selected');
+        $(this).siblings().removeClass('selected');
     });
+
+    // Fire up Backbone
+    Backbone.history.start();
 });

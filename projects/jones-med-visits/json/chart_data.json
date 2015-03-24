@@ -1,0 +1,9 @@
+var json_data = [
+	{"year":"2008","cp-visits":2822},
+	{"year":"2009","cp-visits":4763},
+	{"year":"2010","cp-visits":6405},
+	{"year":"2011","cp-visits":7889},
+	{"year":"2012","cp-visits":9470},
+	{"year":"2013","cp-visits":10333},
+	{"year":"2014","cp-visits":10770}
+];
