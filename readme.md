@@ -99,12 +99,23 @@ You can add as many "breakpoints" as you want. For instance, if you want the hei
 You can also use both:
 
 ```html
-<div id="iframe-responsive-container" data-height="320px" data-700-height="250px" data-600-height="220px">
+<div id="iframe-responsive-container" data-height="320px" data-600-height="220px" data-700-height="250px">
 	<iframe id="iframe-responsive" src="index.html" scrolling=no frameborder="0" width="100%"></iframe>
 </div>
 ```
 
-Because our CMS strips out attributes, which are very important, we [lazy load](https://github.com/emn178/jquery-lazyload-any) the embed like so:
+It is important to note that if you are going to use multiple media queries, you put the lowest pixel amounts first within the markup. So for instance, do this:
+
+```html
+<div class="iframe-responsive-container chart" data-height="650px" data-400-height="750px" data-550-height="700px">
+```
+
+And not this:
+```html
+<div class="iframe-responsive-container chart" data-height="650px" data-550-height="700px" data-400-height="750px">
+```
+
+Because our CMS strips out attributes, which are very important, we must [lazy load](https://github.com/emn178/jquery-lazyload-any) the embed like so:
 
 ```html
 <div class="lazyload"><!--
