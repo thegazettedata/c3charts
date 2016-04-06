@@ -64,14 +64,14 @@ function loadTabletopData(tabletop_data, tabletop) {
 
 // Pull data from Google spreadsheet via Tabletop
 function initializeTabletopObject(){
-    loadTabletopData(tabletop_data); 
+    // loadTabletopData(tabletop_data); 
 
-    // Tabletop.init({
-    //     key: spreadsheet_key,
-    //     callback: loadTabletopData,
-    //     simpleSheet: false,
-    //     debug: false
-    // });
+    Tabletop.init({
+        key: spreadsheet_key,
+        callback: loadTabletopData,
+        simpleSheet: false,
+        debug: false
+    });
 }
 
 // Doc ready

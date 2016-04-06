@@ -1,0 +1,256 @@
+var tabletop_data = {
+    "Turnover percent": {
+        "name": "Turnover percent",
+        "column_names": [
+            "school",
+            "offense",
+            "offenserank",
+            "defense",
+            "defenserank"
+        ],
+        "elements": [
+            {
+                "school": "UNI",
+                "offense": "15.2",
+                "offenserank": "17",
+                "defense": "18.7",
+                "defenserank": "142",
+                "rowNumber": 1
+            },
+            {
+                "school": "Iowa",
+                "offense": "14.6",
+                "offenserank": "10",
+                "defense": "18.8",
+                "defenserank": "132",
+                "rowNumber": 2
+            },
+            {
+                "school": "ISU",
+                "offense": "15.7",
+                "offenserank": "29",
+                "defense": "17.2",
+                "defenserank": "239",
+                "rowNumber": 3
+            },
+            {
+                "school": "Nation",
+                "offense": "18.2",
+                "offenserank": "",
+                "defense": "18.2",
+                "defenserank": "",
+                "rowNumber": 4
+            }
+        ]
+    },
+    "Adjusted tempo": {
+        "name": "Adjusted tempo",
+        "column_names": [
+            "school",
+            "value",
+            "valuerank"
+        ],
+        "elements": [
+            {
+                "school": "UNI",
+                "value": "62.9",
+                "valuerank": "346",
+                "rowNumber": 1
+            },
+            {
+                "school": "Iowa",
+                "value": "70",
+                "valuerank": "113",
+                "rowNumber": 2
+            },
+            {
+                "school": "ISU",
+                "value": "71.7",
+                "valuerank": "58",
+                "rowNumber": 3
+            },
+            {
+                "school": "Nation",
+                "value": "69",
+                "valuerank": "",
+                "rowNumber": 4
+            }
+        ]
+    },
+    "Effective FG percent": {
+        "name": "Effective FG percent",
+        "column_names": [
+            "school",
+            "offense",
+            "offenserank",
+            "defense",
+            "defenserank"
+        ],
+        "elements": [
+            {
+                "school": "UNI",
+                "offense": "53.2",
+                "offenserank": "45",
+                "defense": "48.7",
+                "defenserank": "112",
+                "rowNumber": 1
+            },
+            {
+                "school": "Iowa",
+                "offense": "51.9",
+                "offenserank": "85",
+                "defense": "47.3",
+                "defenserank": "64",
+                "rowNumber": 2
+            },
+            {
+                "school": "ISU",
+                "offense": "56.9",
+                "offenserank": "6",
+                "defense": "49.6",
+                "defenserank": "160",
+                "rowNumber": 3
+            },
+            {
+                "school": "Nation",
+                "offense": "49.9",
+                "offenserank": "",
+                "defense": "49.9",
+                "defenserank": "",
+                "rowNumber": 4
+            }
+        ]
+    },
+    "Adjusted efficiency": {
+        "name": "Adjusted efficiency",
+        "column_names": [
+            "school",
+            "offense",
+            "offenserank",
+            "defense",
+            "defenserank"
+        ],
+        "elements": [
+            {
+                "school": "UNI",
+                "offense": "1.055",
+                "offenserank": "137",
+                "defense": "0.97",
+                "defenserank": "48",
+                "rowNumber": 1
+            },
+            {
+                "school": "Iowa",
+                "offense": "1.152",
+                "offenserank": "21",
+                "defense": "0.956",
+                "defenserank": "27",
+                "rowNumber": 2
+            },
+            {
+                "school": "ISU",
+                "offense": "1.212",
+                "offenserank": "2",
+                "defense": "1.007",
+                "defenserank": "113",
+                "rowNumber": 3
+            },
+            {
+                "school": "Nation",
+                "offense": "1.037",
+                "offenserank": "",
+                "defense": "1.037",
+                "defenserank": "",
+                "rowNumber": 4
+            }
+        ]
+    },
+    "Offense rebound percent": {
+        "name": "Offense rebound percent",
+        "column_names": [
+            "school",
+            "offense",
+            "offenserank",
+            "defense",
+            "defenserank"
+        ],
+        "elements": [
+            {
+                "school": "UNI",
+                "offense": "17.8",
+                "offenserank": "351",
+                "defense": "27.2",
+                "defenserank": "69",
+                "rowNumber": 1
+            },
+            {
+                "school": "Iowa",
+                "offense": "32",
+                "offenserank": "101",
+                "defense": "31.5",
+                "defenserank": "265",
+                "rowNumber": 2
+            },
+            {
+                "school": "ISU",
+                "offense": "27.3",
+                "offenserank": "256",
+                "defense": "30.9",
+                "defenserank": "234",
+                "rowNumber": 3
+            },
+            {
+                "school": "Nation",
+                "offense": "29.8",
+                "offenserank": "",
+                "defense": "29.8",
+                "defenserank": "",
+                "rowNumber": 4
+            }
+        ]
+    },
+    "FT rate": {
+        "name": "FT rate",
+        "column_names": [
+            "school",
+            "offense",
+            "offenserank",
+            "defense",
+            "defenserank"
+        ],
+        "elements": [
+            {
+                "school": "UNI",
+                "offense": "32.8",
+                "offenserank": "274",
+                "defense": "23.6",
+                "defenserank": "1",
+                "rowNumber": 1
+            },
+            {
+                "school": "Iowa",
+                "offense": "34",
+                "offenserank": "247",
+                "defense": "25.7",
+                "defenserank": "10",
+                "rowNumber": 2
+            },
+            {
+                "school": "ISU",
+                "offense": "25.8",
+                "offenserank": "349",
+                "defense": "23.7",
+                "defenserank": "3",
+                "rowNumber": 3
+            },
+            {
+                "school": "Nation",
+                "offense": "36.7",
+                "offenserank": "",
+                "defense": "36.7",
+                "defenserank": "",
+                "rowNumber": 4
+            }
+        ]
+    }
+}
